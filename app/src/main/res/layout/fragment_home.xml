@@ -66,7 +66,7 @@
                 android:id="@+id/Iv_template"
                 android:layout_width="120dp"
                 android:layout_height="110dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -113,7 +113,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horizontal_rev"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
@@ -132,7 +132,7 @@
         app:layout_constraintStart_toStartOf="@id/horizontal_rev"/>
 
     <ImageView
-        android:id="@+id/listimg"
+        android:id="@+id/imageButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:contentDescription="@string/img_list"
@@ -143,10 +143,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vertical_rv"
         android:layout_width="0dp"
-        android:layout_height="450dp"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_list"

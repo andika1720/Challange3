@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_margin="20dp"
     android:padding="20dp"
@@ -38,24 +38,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/imagev_menu"/>
 
-        <TextView
-            android:id="@+id/tv_RpPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@string/rp"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/text_menu"
-            app:layout_constraintTop_toBottomOf="@id/text_menu"
-            tools:ignore="MissingConstraints,TextContrastCheck" />
 
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_55_000"
+            android:text="@string/Rp_55_000"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@id/tv_RpPrice"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toEndOf="@id/imagev_menu"
             app:layout_constraintTop_toBottomOf="@id/text_menu"
             tools:ignore="MissingConstraints,TextContrastCheck" />
 

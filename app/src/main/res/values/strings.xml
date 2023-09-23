@@ -34,7 +34,7 @@
     <string name="menu_makanan">Menu Makanan</string>
     <string name="iv_template_pizza">IV Template Pizza</string>
     <string name="tv_template">Pesan makanan dengan aplikasi\n dan dapatkan diskonmu</string>
-    <string name="_55_000">55.000</string>
+    <string name="Rp_55_000">Rp 55.000</string>
     <string name="rp">Rp.</string>
     <string name="tambah_ke_keranjang_rp_20_000">Tambah Ke Keranjang -Rp.20.000</string>
     <string name="jl_kalibata_tengah_iii_no_2_rw_3_kalibata_pancoran_south_jakarta_city_jakarta_12740">Jl. Kalibata Tengah III No.2, RW.3, Kalibata, Pancoran, South Jakarta City, Jakarta 12740</string>
@@ -67,7 +67,7 @@
         <item>45000</item>
     </string-array>
 
-    <string-array name="data_drawableImg">
+    <integer-array name="data_drawableImg">
         <item>@drawable/pizzabck</item>
         <item>@drawable/burger</item>
         <item>@drawable/kentang</item>
@@ -76,7 +76,7 @@
         <item>@drawable/minuman</item>
         <item>@drawable/nasi_goreng</item>
         <item>@drawable/salmon</item>
-    </string-array>
+    </integer-array>
 
     <string-array name="deskripsi_menu">
         <item>hidangan lezat dengan adonan renyah, saus tomat, dan keju meleleh, dihiasi dengan beragam topping. Kesempurnaan rasa dalam setiap gigitan.</item>

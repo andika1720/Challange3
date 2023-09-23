@@ -17,5 +17,25 @@
     <fragment
         android:id="@+id/detailFragmentMenu"
         android:name="com.example.challangebinar3.DetailFragmentMenu"
-        android:label="DetailFragmentMenu" />
+        android:label="DetailFragmentMenu" >
+        <argument
+            android:name="iv_detail"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="priceMenu"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Data Tidak Ditemukan" />
+        <argument
+            android:name="nameMenu"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Data Tidak Ditemukan" />
+        <argument
+            android:name="descDetailMenu"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Data Tidak Ditemukan" />
+    </fragment>
 </navigation>

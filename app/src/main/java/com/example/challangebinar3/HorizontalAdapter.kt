@@ -19,22 +19,22 @@ class HorizontalAdapter(
     RecyclerView.Adapter<HorizontalAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val name = itemView.findViewById<TextView>(R.id.text_menu)!!
-        val image = itemView. findViewById<ImageView>(R.id.imagev_menu)!!
-        val price = itemView.findViewById<TextView>(R.id.tv_RpPrice)!!
+        val name :TextView=  itemView.findViewById(R.id.text_menu)!!
+        val image :ImageView = itemView. findViewById(R.id.imagev_menu)!!
+        val price :TextView= itemView.findViewById(R.id.tv_price)!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_horizontal,parent,false)
+        val layoutResId = if(gridMode) R.layout.grid_vertical else R.layout.vertical_item
+        val view : View = LayoutInflater.from(parent.context).inflate(layoutResId,parent,false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-        val ( image, name, price,_ ) = listFood[position]
+        val ( image, name, price, desc ) = listFood[position]
         holder.image.setImageResource(image)
         holder.name.text = name
         holder.price.text = price
-
 
         val currentItem = listFood[position]
         holder.itemView.setOnClickListener {
