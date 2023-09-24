@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imagev_menu"
             android:layout_width="154dp"
-            android:layout_height="154dp"
+            android:layout_height="145dp"
             tools:src="@drawable/pizzabck"
             android:scaleType="centerCrop"
             android:layout_marginTop="10dp"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:text="@string/Rp_55_000"
             android:textSize="14sp"
-            android:layout_marginStart="23dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_menu"
             tools:ignore="TextContrastCheck" />

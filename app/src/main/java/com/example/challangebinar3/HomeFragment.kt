@@ -63,24 +63,6 @@ class HomeFragment : Fragment() {
 
         toggleReycylerView()
 
-
-//        binding.listimg.setOnClickListener {
-//            if (currentView == viewList){
-//                binding.listimg.setImageDrawable(
-//                    ContextCompat.getDrawable(
-//                        requireActivity(), R.drawable.list_format
-//                    )
-//                )
-//
-//            } else{
-//                binding.listimg.setImageDrawable(
-//                    ContextCompat.getDrawable(
-//                        requireActivity(), R.drawable.griddddd
-//                    )
-//                )
-//
-//            }
-//        }
     }
 
 
