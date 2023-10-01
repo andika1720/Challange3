@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imagev_menu"
             android:layout_width="154dp"
-            android:layout_height="145dp"
+            android:layout_height="115dp"
             tools:src="@drawable/pizzabck"
             android:scaleType="centerCrop"
             android:layout_marginTop="10dp"

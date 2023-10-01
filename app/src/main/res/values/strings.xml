@@ -43,6 +43,14 @@
     <string name="image_location">image location</string>
     <string name="_20_000">20.000</string>
     <string name="imgdetail">imgdetail</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="invispass">************</string>
+    <string name="username_frgm_profile">Username</string>
+    <string name="password">Password</string>
+    <string name="et_username_profile">Your Username</string>
+    <string name="total_pesanan">Total Pesanan:</string>
+    <string name="pesan">Pesan</string>
 
 
     <string-array name="data_makananName">

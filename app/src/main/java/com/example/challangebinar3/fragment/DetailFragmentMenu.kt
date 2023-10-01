@@ -1,4 +1,4 @@
-package com.example.challangebinar3
+package com.example.challangebinar3.fragment
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -35,7 +35,8 @@ class DetailFragmentMenu : Fragment() {
             // Ini untuk menangkap data dari Home Fragment
             // Karena pake safe args makanya kita pake fromBundle(arguments as Bundle)
             // dia mengambil arguments yang kita buat tadi di my_Nav
-            val data = DetailFragmentMenuArgs.fromBundle(arguments as Bundle)
+            val data =
+                com.example.challangebinar3.fragment.DetailFragmentMenuArgs.fromBundle(arguments as Bundle)
             binding.ivDetail.setImageResource(data.ivDetail)
             binding.nameMenu.text = data.nameMenu
             binding.priceMenu.text = data.priceMenu

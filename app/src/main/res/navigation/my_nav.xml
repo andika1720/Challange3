@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragmentMenu"
-        android:name="com.example.challangebinar3.DetailFragmentMenu"
+        android:name="com.example.challangebinar3.fragment.DetailFragmentMenu"
         android:label="DetailFragmentMenu" >
         <argument
             android:name="iv_detail"
@@ -38,4 +38,14 @@
             app:nullable="true"
             android:defaultValue="Data Tidak Ditemukan" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.example.challangebinar3.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/fragmentCart"
+        android:name="com.example.challangebinar3.fragment.FragmentCart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>
