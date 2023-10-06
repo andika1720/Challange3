@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 
 class CategoryAdapter(private val listCategory: ArrayList<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
@@ -14,12 +13,12 @@ class CategoryAdapter(private val listCategory: ArrayList<Category>) : RecyclerV
         val name: TextView = itemView.findViewById(R.id.text_menu)!!
         val image :ImageView = itemView. findViewById(R.id.imagev_menu)!!
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_horizontal,parent,false)
-        return CategoryAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ( name,image ) = listCategory[position]
         holder.image.setImageResource(image)
         holder.name.text = name

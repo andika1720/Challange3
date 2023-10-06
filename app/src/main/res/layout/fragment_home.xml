@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="15dp"
     tools:context=".HomeFragment">
 
     <TextView
@@ -14,6 +13,7 @@
         android:text="@string/hai_binarian"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
         android:text="@string/mau_makan_apa_hari_ini"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +33,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:contentDescription="@string/imguser"
         android:src="@drawable/userhtm"
         app:layout_constraintBottom_toBottomOf="@id/txt1"
@@ -41,6 +43,7 @@
         android:id="@+id/cart"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_marginEnd="10dp"
         android:contentDescription="@string/imgcart"
         android:src="@drawable/keranjang_belanja"
         app:layout_constraintEnd_toStartOf="@id/user"
@@ -50,7 +53,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_template"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/cream"
         android:layout_marginStart="10dp"
@@ -81,10 +84,11 @@
                 android:text="@string/diskon_30"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintStart_toEndOf="@id/Iv_template"
                 app:layout_constraintBottom_toTopOf="@id/Tv_PesanMakan"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                />
 
             <TextView
                 android:id="@+id/Tv_PesanMakan"
@@ -93,7 +97,7 @@
                 android:text="@string/tv_template"
                 android:textSize="14sp"
                 android:textStyle="italic"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/Iv_template"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -104,53 +108,53 @@
                 android:src="@drawable/disc"
                 android:layout_marginEnd="20dp"
                 android:contentDescription="@string/diskon_30"
-                app:layout_constraintBottom_toTopOf="@id/Tv_Discount"
+                app:layout_constraintBottom_toTopOf="@id/Tv_PesanMakan"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/horizontal_rev"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintTop_toBottomOf="@id/cv_template"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/list_menu_makanan"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@id/horizontal_rev"
-        app:layout_constraintStart_toStartOf="@id/horizontal_rev"/>
-
-    <ImageView
-        android:id="@+id/imageButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:contentDescription="@string/img_list"
-        android:src="@drawable/list_format"
-        app:layout_constraintTop_toTopOf="@id/tv_list"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vertical_rv"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
+            android:id="@+id/horizontal_rev"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_template"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_menu_makanan"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_rev"
+            app:layout_constraintStart_toStartOf="@id/horizontal_rev"/>
+
+        <ImageView
+            android:id="@+id/imageButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/img_list"
             android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_list"
-            tools:ignore="TextSizeCheck" />
+            android:src="@drawable/list_format"
+            app:layout_constraintTop_toTopOf="@id/tv_list"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/vertical_rv"
+             android:layout_width="match_parent"
+             android:layout_height="0dp"
+             android:layout_marginTop="10dp"
+             android:padding="18dp"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/tv_list"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

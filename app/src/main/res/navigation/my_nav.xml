@@ -24,9 +24,7 @@
             android:defaultValue="-1" />
         <argument
             android:name="priceMenu"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Data Tidak Ditemukan" />
+            app:argType="integer" />
         <argument
             android:name="nameMenu"
             app:argType="string"
@@ -37,6 +35,9 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="Data Tidak Ditemukan" />
+        <action
+            android:id="@+id/action_detailFragmentMenu_to_fragmentCart"
+            app:destination="@id/fragmentCart" />
     </fragment>
     <fragment
         android:id="@+id/fragmentProfile"
@@ -47,5 +48,14 @@
         android:id="@+id/fragmentCart"
         android:name="com.example.challangebinar3.fragment.FragmentCart"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_fragmentCart_to_fragmentKonfirmasiPesanan"
+            app:destination="@id/fragmentKonfirmasiPesanan" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentKonfirmasiPesanan"
+        android:name="com.example.challangebinar3.FragmentKonfirmasiPesanan"
+        android:label="fragment_konfirmasi_pesanan"
+        tools:layout="@layout/fragment_konfirmasi_pesanan" />
 </navigation>

@@ -64,7 +64,7 @@
         <item>Salmon</item>
     </string-array>
 
-    <string-array name="data_harga">
+    <integer-array name="data_harga">
         <item>55000</item>
         <item>35000</item>
         <item>22000</item>
@@ -73,7 +73,7 @@
         <item>17000</item>
         <item>21000</item>
         <item>45000</item>
-    </string-array>
+    </integer-array>
 
     <integer-array name="data_drawableImg">
         <item>@drawable/pizzabck</item>
