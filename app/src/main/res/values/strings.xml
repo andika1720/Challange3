@@ -51,6 +51,12 @@
     <string name="et_username_profile">Your Username</string>
     <string name="total_pesanan">Total Pesanan:</string>
     <string name="pesan">Pesan</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="ringkasan_pembayaran">Ringkasan Pembayaran</string>
+    <string name="metode_pengiriman">Metode Pengiriman</string>
+    <string name="tittle">Tittle</string>
+    <string name="price">Price</string>
+    <string name="quantity">quantity</string>
 
 
     <string-array name="data_makananName">

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".FragmentProfile">
+    tools:context=".fragment.FragmentProfile">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -77,18 +77,19 @@
             android:layout_marginStart="25dp"
             app:layout_constraintTop_toBottomOf="@id/et_password"
             app:layout_constraintStart_toStartOf="parent"/>
+
         <EditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="youremail@gmail.com"
-            app:layout_constraintTop_toBottomOf="@id/tv_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
+            android:hint="youremail@gmail.com"
             android:importantForAutofill="no"
-            tools:ignore="VisualLintTextFieldSize" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_email"
+            tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
         <TextView
             android:id="@+id/tv_no_telepon"
             android:layout_width="wrap_content"

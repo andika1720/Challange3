@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.challangebinar3.Database.Cart
 import com.example.challangebinar3.Database.CartRepo
 import com.example.challangebinar3.ParcelMakanan
-import com.example.challangebinar3.fragment.DetailFragmentMenuArgs
+
 
 class DetailFragmentMenuViewModel(application: Application): ViewModel() {
 
@@ -25,7 +25,7 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
         cartRepo = CartRepo(application)
     }
 
-    fun insert(cart: Cart) {
+    private fun insert(cart: Cart) {
         cartRepo.insert(cart)
     }
 
@@ -34,7 +34,7 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
         _totalPrice.value = item.harga
 
     }
-    fun total(){
+    private fun total(){
         val currentAmount = _counter.value ?: 1
         val selectedItem = _selectedItem.value
         if (selectedItem != null){

@@ -1,9 +1,11 @@
 package com.example.challangebinar3.fragment
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +31,7 @@ class DetailFragmentMenu : Fragment() {
     private lateinit var  viewModel: DetailFragmentMenuViewModel
     private var item: ParcelMakanan? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,7 +81,11 @@ class DetailFragmentMenu : Fragment() {
 
 
                 } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(requireContext(), "Google Maps tidak terinstal.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Google Maps tidak terinstal.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -115,6 +122,7 @@ class DetailFragmentMenu : Fragment() {
         @Suppress("DEPRECATION")
         item = arguments?.getParcelable("item")
 
+        Log.e("isi item parcel", item.toString())
         item?.let {
             binding.ivDetail.setImageResource(it.image)
             binding.nameMenu.text = item?.name
@@ -144,5 +152,6 @@ class DetailFragmentMenu : Fragment() {
             viewModel.decrement()
         }
     }
+
 
 }

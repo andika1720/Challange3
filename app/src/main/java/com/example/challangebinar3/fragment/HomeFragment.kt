@@ -1,6 +1,7 @@
-package com.example.challangebinar3
+package com.example.challangebinar3.fragment
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.challangebinar3.Category
+import com.example.challangebinar3.CategoryAdapter
+import com.example.challangebinar3.HorizontalAdapter
+import com.example.challangebinar3.ParcelMakanan
+import com.example.challangebinar3.R
 import com.example.challangebinar3.ViewModel.HomeViewModel
 import com.example.challangebinar3.databinding.FragmentHomeBinding
+import com.example.challangebinar3.sharePreference
 
 
 class HomeFragment : Fragment() {
@@ -102,8 +109,17 @@ class HomeFragment : Fragment() {
     private fun itemClicked() {
         horizontalAdapter =
             HorizontalAdapter(foodData, homeViewModel.menuView.value ?: true) { item ->
+                Log.e("Isi Item", item.toString())
+
                 val bundle = bundleOf("item" to item)
-                findNavController().navigate(R.id.action_homeFragment_to_detailFragmentMenu, bundle)
+                Log.e("Isi Bundle", bundle.toString())
+                findNavController().navigate(R.id.action_homeFragment_to_detailFragmentMenu, args = bundle)
+
+
+            //    val args = Bundle()
+//                args.putParcelable("item", item)
+//
+
             }
         binding.verticalRv.adapter = horizontalAdapter
     }
