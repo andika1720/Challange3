@@ -1,7 +1,6 @@
 package com.example.challangebinar3
 
 import android.annotation.SuppressLint
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,16 +72,16 @@ class CartAdapter(
                 binding.tvNumber.text = cartItem.foodQuantity.toString()
             }
 
-            binding.noteCart.setOnKeyListener { _, keycode, event ->
-                if ((event.action == KeyEvent.ACTION_DOWN) &&
-                        (keycode == KeyEvent.KEYCODE_ENTER)) {
-                    val notes = binding.noteCart.text.toString()
-                    viewModel.updateNotes(notes,cartItem)
-                    binding.noteCart.clearFocus()
-                    return@setOnKeyListener true
-                }
-                return@setOnKeyListener false
-            }
+//            binding.noteCart.setOnKeyListener { _, keycode, event ->
+//                if ((event.action == KeyEvent.ACTION_DOWN) &&
+//                        (keycode == KeyEvent.KEYCODE_ENTER)) {
+//                    val notes = binding.noteCart.text.toString()
+//                    viewModel.updateNotes(notes,cartItem)
+//                    binding.noteCart.clearFocus()
+//                    return@setOnKeyListener true
+//                }
+//                return@setOnKeyListener false
+//            }
         }
     }
 

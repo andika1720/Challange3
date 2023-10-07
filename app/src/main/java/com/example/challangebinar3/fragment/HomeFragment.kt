@@ -106,6 +106,7 @@ class HomeFragment : Fragment() {
 
     }
 
+    //mengirim data ke detailfragment
     private fun itemClicked() {
         horizontalAdapter =
             HorizontalAdapter(foodData, homeViewModel.menuView.value ?: true) { item ->

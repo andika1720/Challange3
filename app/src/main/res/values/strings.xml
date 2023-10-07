@@ -57,6 +57,16 @@
     <string name="tittle">Tittle</string>
     <string name="price">Price</string>
     <string name="quantity">quantity</string>
+    <string name="ambil_sendiri">Ambil Sendiri</string>
+    <string name="dikirim">Dikirim</string>
+    <string name="tunai">Tunai</string>
+    <string name="dompet_digital">Dompet Digital</string>
+    <string name="youremail_gmail_com">youremail@gmail.com</string>
+    <string name="_62_8">+62: 8</string>
+    <string name="iv_profile">IV_Profile</string>
+    <string name="email">Email</string>
+    <string name="no_telepon">No. Telepon</string>
+    <string name="total">Total =</string>
 
 
     <string-array name="data_makananName">

@@ -59,20 +59,7 @@ class DetailFragmentMenu : Fragment() {
             btnBack()
             wViewModel()
 
-            // Ini untuk menangkap data dari Home Fragment
-            // Karena pake safe args makanya kita pake fromBundle(arguments as Bundle)
-            // dia mengambil arguments yang kita buat tadi di my_Nav
-//            val data =
-//                DetailFragmentMenuArgs.fromBundle(arguments as Bundle)
-//
-//
-//            data?.let {
-//                binding.ivDetail.setImageResource(data.ivDetail)
-//                binding.nameMenu.text = data.nameMenu
-//                binding.priceMenu.text = data.priceMenu
-//                binding.descDetailMenu.text = data.descDetailMenu
-//                viewModel.initSelectedItem(it)
-//            }
+
 
             binding.tvLokasi.setOnClickListener {
                 try {
@@ -105,6 +92,7 @@ class DetailFragmentMenu : Fragment() {
         }
     }
 
+
     private fun addToCart() {
         binding.buttonDetail.setOnClickListener {
             viewModel.addToCart()
@@ -118,6 +106,7 @@ class DetailFragmentMenu : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[DetailFragmentMenuViewModel::class.java]
     }
 
+    //menerima data dari homefragment
     private fun setData() {
         @Suppress("DEPRECATION")
         item = arguments?.getParcelable("item")

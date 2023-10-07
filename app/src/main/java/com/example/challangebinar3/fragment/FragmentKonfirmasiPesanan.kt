@@ -37,16 +37,19 @@ class FragmentKonfirmasiPesanan : Fragment() {
         cartViewModel.allCartItems.observe(viewLifecycleOwner) {
             var listMenu = ""
             var priceMenu = ""
+            var total1 = ""
             var totalPrice = 0
             it.forEach { item ->
                 listMenu += "${item.foodName} - ${item.foodQuantity} x ${item.priceMenu}\n"
-                priceMenu += "Rp. ${item.totalPrice}\n"
-                totalPrice += item.totalPrice
+                priceMenu += "Rp. ${item.totalPrice}\n "
+                total1 = "Total = "
+                totalPrice += (item.totalPrice)
             }
 
             val totalText = "Rp. $totalPrice"
             binding.tvNameConfirm.text = listMenu
             binding.tvQuantityConfirm.text = priceMenu
+            binding.totalConfirm.text = total1
             binding.tvPriceConfirm.text = totalText
         }
     }

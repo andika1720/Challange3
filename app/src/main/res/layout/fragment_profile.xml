@@ -18,7 +18,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/user"/>
+            android:src="@drawable/user"
+            android:contentDescription="@string/iv_profile" />
 
         <TextView
             android:id="@+id/tv_username"
@@ -31,18 +32,19 @@
             android:layout_marginStart="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_profile"/>
+
         <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/et_username_profile"
-            app:layout_constraintTop_toBottomOf="@id/tv_username"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
+            android:hint="@string/et_username_profile"
             android:importantForAutofill="no"
-            tools:ignore="TextFields,VisualLintTextFieldSize" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_username"
+            tools:ignore="TextFields,VisualLintTextFieldSize,TextContrastCheck" />
         <TextView
             android:id="@+id/tv_password"
             android:layout_width="wrap_content"
@@ -70,7 +72,7 @@
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="@string/email"
             android:textSize="26sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
@@ -84,17 +86,17 @@
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:hint="youremail@gmail.com"
+            android:hint="@string/youremail_gmail_com"
             android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_email"
-            tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+            tools:ignore="TextContrastCheck,TextFields,VisualLintTextFieldSize" />
         <TextView
             android:id="@+id/tv_no_telepon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No. Telepon"
+            android:text="@string/no_telepon"
             android:textSize="26sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
@@ -105,7 +107,7 @@
             android:id="@+id/et_no_telepon"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="+62: 8"
+            android:hint="@string/_62_8"
             app:layout_constraintTop_toBottomOf="@id/tv_no_telepon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
