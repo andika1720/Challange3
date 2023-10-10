@@ -207,22 +207,6 @@ class HomeFragment : Fragment() {
         foodData.addAll(getFood())
         binding.verticalRv.adapter = adapter
     }
-//            val actionToDetail
-//            = HomeFragmentDirections.actionHomeFragmentToDetailFragmentMenu(2)
-//            actionToDetail.ivDetail = it.image
-//            actionToDetail.priceMenu = it.harga
-//            actionToDetail.nameMenu = it.name
-//            actionToDetail.descDetailMenu = it.desc
-
-//
-//            findNavController().navigate(actionToDetail)
-//
-//
-//
-//        foodData.addAll(getFood())
-//        binding.verticalRv.adapter = adapter
-
-
     //baru dibuat
     @SuppressLint("NotifyDataSetChanged")
     private fun updateRv(menuItem: ArrayList<ParcelMakanan>){
