@@ -21,6 +21,9 @@ class CartRepo(application: Application) {
 
     fun getAllCartItems(): LiveData<List<Cart>> = _cartDao.getAllItem()
 
+    fun deleteItems(){
+        executorService.execute {_cartDao.deleteItems()}
+    }
     fun deleteItemCart(cartId : Long) {
       executorService.execute {_cartDao.deleteItemById(cartId) }
     }

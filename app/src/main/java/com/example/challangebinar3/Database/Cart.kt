@@ -22,7 +22,7 @@ data class Cart (
     @ColumnInfo(name = "total_Price")
     var totalPrice: Int,
     @ColumnInfo(name = "food_Note")
-    var foodNote: String? = null
+    var foodNote: String?
 
 ):Parcelable
 {

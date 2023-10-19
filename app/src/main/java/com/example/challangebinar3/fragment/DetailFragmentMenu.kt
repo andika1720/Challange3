@@ -26,6 +26,7 @@ class DetailFragmentMenu : Fragment() {
     private var _binding: FragmentDetailMenuBinding? = null
     private val binding get() = _binding!!
 
+
     private val url: String = "https://maps.app.goo.gl/CAN7FLsRkUeRZ2dTA"
 
     private lateinit var  viewModel: DetailFragmentMenuViewModel
@@ -95,8 +96,8 @@ class DetailFragmentMenu : Fragment() {
 
     private fun addToCart() {
         binding.buttonDetail.setOnClickListener {
-            viewModel.addToCart()
-
+            val inputNote = binding.inputNote.text.toString()
+            viewModel.addToCart(inputNote)
             findNavController().navigate(R.id.action_detailFragmentMenu_to_fragmentCart)
         }
     }

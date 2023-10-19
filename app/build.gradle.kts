@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs")
     id ("kotlin-kapt")
     id ("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -43,6 +44,18 @@ android {
 }
 
 dependencies {
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    //
+    implementation("com.google.firebase:firebase-analytics-ktx:21.3.0")
+    //
+    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
+    //
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    //glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

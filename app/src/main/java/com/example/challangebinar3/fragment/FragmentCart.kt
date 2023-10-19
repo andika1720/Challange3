@@ -13,12 +13,15 @@ import com.example.challangebinar3.R
 import com.example.challangebinar3.ViewModel.CartViewModel
 import com.example.challangebinar3.ViewModel.ViewModelFactory
 import com.example.challangebinar3.databinding.FragmentCartBinding
+import com.example.challangebinar3.databinding.ItemCartBinding
 
 class FragmentCart : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
+
     private lateinit var cartViewModel: CartViewModel
     private lateinit var cartAdapter: CartAdapter
+
 
 
     override fun onCreateView(
@@ -28,7 +31,7 @@ class FragmentCart : Fragment() {
         binding = FragmentCartBinding.inflate(inflater, container, false)
         setUpCartViewModel()
 
-        cartAdapter = CartAdapter(cartViewModel, false)
+        cartAdapter = CartAdapter(cartViewModel)
         binding.rvCart.setHasFixedSize(true)
         binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCart.adapter = cartAdapter
@@ -59,5 +62,4 @@ class FragmentCart : Fragment() {
             )
         }
     }
-
 }

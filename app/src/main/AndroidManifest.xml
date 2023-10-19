@@ -19,9 +19,6 @@
             android:name=".UserRegister"
             android:exported="false" />
         <activity
-            android:name=".UserLogin"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

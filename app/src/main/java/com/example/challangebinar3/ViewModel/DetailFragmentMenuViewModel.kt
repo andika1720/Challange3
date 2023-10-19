@@ -58,7 +58,7 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
         total()
     }
 
-    fun addToCart() {
+    fun addToCart(notes: String) {
         val selectedItem = _selectedItem.value
 
         selectedItem?.let {
@@ -71,7 +71,7 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
                             priceMenu = it.harga,
                             foodQuantity = it2,
                             totalPrice = it1,
-                            foodNote = ""
+                            foodNote = notes
                         )
                     }
                 }

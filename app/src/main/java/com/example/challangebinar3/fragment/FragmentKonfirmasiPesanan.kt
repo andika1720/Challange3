@@ -32,6 +32,7 @@ class FragmentKonfirmasiPesanan : Fragment() {
         setCartVm()
         getConfirm()
         showRv()
+        payment()
     }
     private fun getConfirm() {
         cartViewModel.allCartItems.observe(viewLifecycleOwner) {
@@ -60,8 +61,15 @@ class FragmentKonfirmasiPesanan : Fragment() {
         cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
     }
 
+    private fun payment(){
+        binding.btPayment.setOnClickListener {
+            val dialogPayment = DialogPembayaran()
+            dialogPayment.show(childFragmentManager, "PaymentSuccesfull")
+            cartViewModel.deleteItems()
+        }
+    }
     private fun showRv() {
-        val adapter = CartAdapter(cartViewModel, true)
+        val adapter = CartAdapter(cartViewModel)
 
         binding.rvConfirm.adapter = adapter
         binding.rvConfirm.layoutManager = LinearLayoutManager(requireContext())

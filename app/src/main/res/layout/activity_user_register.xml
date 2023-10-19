@@ -120,7 +120,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/khaki"
+        android:backgroundTint="@color/gray_light"
         android:enabled="true"
         android:text="@string/register"
         android:textColor="@color/black"

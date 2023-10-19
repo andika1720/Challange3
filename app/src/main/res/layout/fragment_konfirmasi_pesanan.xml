@@ -176,10 +176,13 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_payment"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="@string/pesan"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/cream"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"

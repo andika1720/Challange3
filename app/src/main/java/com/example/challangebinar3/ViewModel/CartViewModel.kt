@@ -16,6 +16,9 @@ class CartViewModel(application: Application):ViewModel() {
         repository.deleteItemCart(cartId)
     }
 
+    fun deleteItems(){
+        repository.deleteItems()
+    }
     private fun updateQuantityItem(cart: Cart) {
         repository.quantityUpdate(cart)
     }
@@ -31,17 +34,18 @@ class CartViewModel(application: Application):ViewModel() {
 
 
     fun decrement(cart: Cart) {
-        val newTotal = cart.foodQuantity - 1
-        cart.foodQuantity = newTotal
-        cart.totalPrice = cart.priceMenu * newTotal
+        if (cart.foodQuantity > 1) {
 
-        updateQuantityItem(cart)
+
+            val newTotal = cart.foodQuantity - 1
+            cart.foodQuantity = newTotal
+            cart.totalPrice = cart.priceMenu * newTotal
+
+            updateQuantityItem(cart)
+        }
     }
 
-    fun updateNotes(notes: String, cart: Cart){
-        cart.foodNote = notes
-        updateQuantityItem(cart)
-    }
+
 
 }
 
