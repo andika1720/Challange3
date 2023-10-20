@@ -62,17 +62,17 @@
     <string name="tunai">Tunai</string>
     <string name="dompet_digital">Dompet Digital</string>
     <string name="youremail_gmail_com">youremail@gmail.com</string>
-    <string name="_62_8">+62: 8</string>
+    <string name="_62_8">+62: 8********</string>
     <string name="iv_profile">IV_Profile</string>
     <string name="email">Email</string>
     <string name="no_telepon">No. Telepon</string>
     <string name="total">Total =</string>
     <string name="login">LOGIN</string>
     <string name="your_password">Your Password</string>
-    <string name="your_username">Your Username</string>
+    <string name="your_username">Your Email</string>
     <string name="iv_loginsession">IV_Loginsession</string>
     <string name="password_login">Password</string>
-    <string name="username_login">Username</string>
+    <string name="username_login">Email</string>
     <string name="forgot_your_password_login">Forgot Your Password?</string>
     <string name="don_t_have_an_account_login">Don\'t have an account?</string>
     <string name="register_login">Register</string>
@@ -82,6 +82,8 @@
     <string name="kembali_ke_menu">Kembali Ke Menu</string>
     <string name="pembayaran_success">Pembayaran Success</string>
     <string name="pesanan_kamu_telah_kami_terima">Pesanan kamu telah kami terima</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 
 
     <string-array name="data_makananName">

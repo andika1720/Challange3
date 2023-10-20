@@ -8,7 +8,7 @@ import retrofit2.create
 
 object APIClient {
 
-    const val BASE_URL = "https://fb996541-96a6-42e9-98bf-76128f165926.mock.pstmn.io/"
+    const val BASE_URL = "https://testing.jasa-nikah-siri-amanah-profesional.com/"
 
     private val logging: HttpLoggingInterceptor
         get() {

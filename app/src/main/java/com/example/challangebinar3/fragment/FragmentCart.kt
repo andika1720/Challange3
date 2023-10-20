@@ -13,7 +13,7 @@ import com.example.challangebinar3.R
 import com.example.challangebinar3.ViewModel.CartViewModel
 import com.example.challangebinar3.ViewModel.ViewModelFactory
 import com.example.challangebinar3.databinding.FragmentCartBinding
-import com.example.challangebinar3.databinding.ItemCartBinding
+
 
 class FragmentCart : Fragment() {
 

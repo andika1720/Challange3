@@ -2,54 +2,92 @@ package com.example.challangebinar3
 
 
 
-import android.annotation.SuppressLint
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.challangebinar3.dataApi.model.DataListMenu
+import com.example.challangebinar3.databinding.GridVerticalBinding
+import com.example.challangebinar3.databinding.VerticalItemBinding
 
 
 class HorizontalAdapter(
-    private val listFood : ArrayList<ParcelMakanan>,
-    //awalnyaprivate val
     var gridMode : Boolean = true,
-    var onItemClick: ((ParcelMakanan)-> Unit) ? = null) :
-    RecyclerView.Adapter<HorizontalAdapter.ViewHolder>() {
+    var onItemClick:OnClickListener
+): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val name :TextView=  itemView.findViewById(R.id.text_menu)!!
-        val image :ImageView = itemView. findViewById(R.id.imagev_menu)!!
-        val price :TextView= itemView.findViewById(R.id.tv_price)!!
+    private val differ = object : DiffUtil.ItemCallback<DataListMenu>(){
+        override fun areItemsTheSame(oldItem: DataListMenu, newItem: DataListMenu): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: DataListMenu, newItem: DataListMenu): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutResId = if(gridMode) R.layout.grid_vertical else R.layout.vertical_item
-        val view : View = LayoutInflater.from(parent.context).inflate(layoutResId,parent,false)
-        return ViewHolder(view)
+    private val dif = AsyncListDiffer(this, differ)
+
+    fun sendListMenu(value: List<DataListMenu>) = dif.submitList(value)
+    inner class VerticalViewHolder(private var binding: VerticalItemBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: DataListMenu) {
+            binding.apply {
+                textMenu.text = data.nama
+                tvPrice.text = data.hargaFormat
+                Glide.with(this.imagevMenu)
+                    .load(data.imageUrl)
+                    .fitCenter()
+                    .into(imagevMenu)
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-        val ( image, name, price, _ ) = listFood[position]
-        holder.image.setImageResource(image)
-        holder.name.text = name
-        holder.price.text = price.toString()
+    inner class GridViewHolder(private var binding: GridVerticalBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(data: DataListMenu){
+            binding.apply {
+                textMenu.text = data.nama
+                tvPrice.text = data.hargaFormat
+                Glide.with(this.imagevMenu)
+                    .load(data.imageUrl)
+                    .fitCenter()
+                    .into(imagevMenu)
+            }
+        }
 
-        val currentItem = listFood[position]
-        holder.itemView.setOnClickListener {
-            onItemClick?. invoke(currentItem)
+    }
+
+    interface OnClickListener {
+        fun itemClick(data: DataListMenu)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+        return if (gridMode){
+            GridViewHolder(GridVerticalBinding.inflate(view, parent, false))
+        } else {
+            VerticalViewHolder(VerticalItemBinding.inflate(view,parent,false))
         }
     }
 
     override fun getItemCount(): Int {
-        return listFood.size
+        return dif.currentList.size-1
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun reloadData(newData: ArrayList<ParcelMakanan>) {
-        listFood.clear()
-        listFood.addAll(newData)
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val data = dif.currentList[position]
+        when(holder) {
+            is GridViewHolder -> holder.bind(data)
+            is VerticalViewHolder -> holder.bind(data)
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick.itemClick(data)
+        }
+
     }
+
 }

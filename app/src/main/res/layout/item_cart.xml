@@ -45,67 +45,6 @@
             layout="@layout/linear_button"/>
 
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/bt_min"-->
-<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--            android:layout_width="20dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:insetLeft="0dp"-->
-<!--            android:insetTop="0dp"-->
-<!--            android:insetRight="0dp"-->
-<!--            android:insetBottom="0dp"-->
-<!--            android:padding="0dp"-->
-<!--            android:text="-"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:cornerRadius="20dp"-->
-<!--            app:iconGravity="textStart"-->
-<!--            app:iconPadding="0dp"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/tv_number"-->
-<!--            app:layout_constraintTop_toTopOf="@id/bt_plus"-->
-<!--            app:strokeWidth="2dp"-->
-<!--            tools:ignore="TouchTargetSizeCheck,TextSizeCheck,TextContrastCheck" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/bt_plus"-->
-<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--            android:layout_width="20dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:insetLeft="0dp"-->
-<!--            android:insetTop="0dp"-->
-<!--            android:insetRight="0dp"-->
-<!--            android:insetBottom="0dp"-->
-<!--            android:padding="0dp"-->
-<!--            android:text="+"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="12sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:cornerRadius="20dp"-->
-<!--            app:iconGravity="textStart"-->
-<!--            app:iconPadding="0dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/iv_delete"-->
-<!--            app:strokeWidth="2dp"-->
-<!--            tools:ignore="TouchTargetSizeCheck,TextSizeCheck,TextContrastCheck" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tv_number"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:layout_marginBottom="20dp"-->
-<!--            android:text="@string/_1"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/bt_plus"-->
-<!--            app:layout_constraintTop_toTopOf="@id/bt_plus" />-->
-
 
         <TextView
             android:id="@+id/tv_desc"

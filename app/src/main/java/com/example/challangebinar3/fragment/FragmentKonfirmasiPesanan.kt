@@ -5,25 +5,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangebinar3.CartAdapter
 import com.example.challangebinar3.ViewModel.CartViewModel
 
 import com.example.challangebinar3.ViewModel.ViewModelFactory
+import com.example.challangebinar3.dataApi.model.DataOrders
+import com.example.challangebinar3.dataApi.model.ItemOrder
 import com.example.challangebinar3.databinding.FragmentKonfirmasiPesananBinding
 
 
 
 class FragmentKonfirmasiPesanan : Fragment() {
     private lateinit var binding: FragmentKonfirmasiPesananBinding
-    private lateinit var cartViewModel:CartViewModel
+    private lateinit var cartViewModel: CartViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentKonfirmasiPesananBinding.inflate(inflater, container, false)
+
+        cartViewModel.orderSucces.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(requireContext(), "OrderSuccses", Toast.LENGTH_SHORT).show()
+            }
+        }
         return binding.root
     }
 
@@ -34,7 +44,9 @@ class FragmentKonfirmasiPesanan : Fragment() {
         showRv()
         payment()
     }
-    private fun getConfirm() {
+
+    private fun getConfirm(): Int {
+        var finaltotal = 0
         cartViewModel.allCartItems.observe(viewLifecycleOwner) {
             var listMenu = ""
             var priceMenu = ""
@@ -48,12 +60,15 @@ class FragmentKonfirmasiPesanan : Fragment() {
             }
 
             val totalText = "Rp. $totalPrice"
+            finaltotal = totalPrice
             binding.tvNameConfirm.text = listMenu
             binding.tvQuantityConfirm.text = priceMenu
             binding.totalConfirm.text = total1
             binding.tvPriceConfirm.text = totalText
         }
+        return finaltotal
     }
+
 
 
     private fun setCartVm() {
@@ -63,6 +78,17 @@ class FragmentKonfirmasiPesanan : Fragment() {
 
     private fun payment(){
         binding.btPayment.setOnClickListener {
+            val username = "Andika"
+            val orderItems = cartViewModel.allCartItems.value ?: emptyList()
+
+            if (orderItems.isNotEmpty()){
+                val orderReq = DataOrders(username, getConfirm(), orderItems.map {
+                    ItemOrder(it.foodName,it.foodQuantity,it.foodNote, it.totalPrice)
+                })
+
+                cartViewModel.postData(orderReq)
+            }
+
             val dialogPayment = DialogPembayaran()
             dialogPayment.show(childFragmentManager, "PaymentSuccesfull")
             cartViewModel.deleteItems()

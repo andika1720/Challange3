@@ -1,5 +1,4 @@
 package com.example.challangebinar3.fragment
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,18 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.challangebinar3.Category
 import com.example.challangebinar3.CategoryAdapter
 import com.example.challangebinar3.HorizontalAdapter
-import com.example.challangebinar3.ParcelMakanan
 import com.example.challangebinar3.R
+import com.example.challangebinar3.SharePreference
 import com.example.challangebinar3.ViewModel.HomeViewModel
+import com.example.challangebinar3.dataApi.Api.APIClient
+import com.example.challangebinar3.dataApi.model.CategoryMenu
+import com.example.challangebinar3.dataApi.model.DataListMenu
+import com.example.challangebinar3.dataApi.model.ListMenu
 import com.example.challangebinar3.databinding.FragmentHomeBinding
-import com.example.challangebinar3.sharePreference
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
@@ -29,21 +32,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var homeViewModel: HomeViewModel
-
-    private lateinit var userPreference: sharePreference
-
-    //ygdiubah
-    private lateinit var horizontalAdapter: HorizontalAdapter
-
-    private val foodData = ArrayList<ParcelMakanan>()
-
-    private val category = ArrayList<Category>()
-
     private var viewList : Boolean = true
-
-    private var typeLayout = true
-
-//    var currentView = viewList
 
     private val drawable = arrayListOf(
         R.drawable.list_format,
@@ -56,104 +45,21 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        userPreference = sharePreference(requireContext())
+        viewList = SharePreference.read("VIEW LIST", true)
 
-        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
-        homeViewModel.menuView.value = userPreference.getPrefLayout()
+            val toggleButton = binding.imageButton
 
-        //yg ditambah
-        horizontalAdapter = HorizontalAdapter(foodData, homeViewModel.menuView.value ?: true)
-        binding.verticalRv.adapter = horizontalAdapter
-
-
-        binding.horizontalRev.setHasFixedSize(true)
-        if (category.isEmpty()) {
-            category.addAll(getCategory())
-        }
-            showCategory()
-
-        binding.verticalRv.setHasFixedSize(true)
-        if (foodData.isEmpty()) {
-            foodData.addAll(getFood())
-        }
-        showRecycleView()
-
-        homeViewModel.menuView.observe(viewLifecycleOwner){
-            toggleCurrent()
-        }
-
-        homeViewModel.menuItem.observe(viewLifecycleOwner){ menuItem ->
-            updateRv(menuItem)
-        }
-
-        itemClicked()
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        showCategory()
-
-        val toggleButton = binding.imageButton
-        toggleButton.setOnClickListener {
-            viewList = !viewList
-            toggleCurrent()
-            toggleImageViewImage(toggleButton)
-        }
-
-        toggleCurrent()
-
-    }
-
-    //mengirim data ke detailfragment
-    private fun itemClicked() {
-        horizontalAdapter =
-            HorizontalAdapter(foodData, homeViewModel.menuView.value ?: true) { item ->
-                Log.e("Isi Item", item.toString())
-
-                val bundle = bundleOf("item" to item)
-                Log.e("Isi Bundle", bundle.toString())
-                findNavController().navigate(R.id.action_homeFragment_to_detailFragmentMenu, args = bundle)
-
-
-            //    val args = Bundle()
-//                args.putParcelable("item", item)
-//
-
+            toggleButton.setOnClickListener {
+                viewList = !viewList
+                toggleImageViewImage(toggleButton)
+                SharePreference.write("viewList", viewList)
+                fetchListMenu()
             }
-        binding.verticalRv.adapter = horizontalAdapter
-    }
+            fetchCategoryMenu()
+            fetchListMenu()
 
 
-
-    @SuppressLint("Recycle")
-    private fun getFood(): ArrayList<ParcelMakanan>{
-        val dataImg = resources.obtainTypedArray(R.array.data_drawableImg)
-        val name = resources.getStringArray(R.array.data_makananName)
-        val price = resources.getIntArray(R.array.data_harga)
-        val desc = resources.getStringArray(R.array.deskripsi_menu)
-
-        val listFood = ArrayList<ParcelMakanan>()
-        for (i in name.indices){
-            val food = ParcelMakanan(dataImg.getResourceId(i,-1), name[i], price[i],desc[i] )
-            listFood.add(food)
-        }
-        return listFood
-    }
-
-    @SuppressLint("Recycle")
-    private fun getCategory(): ArrayList<Category>{
-        val dataImg = resources.obtainTypedArray(R.array.data_drawableImg)
-        val name = resources.getStringArray(R.array.data_makananName)
-
-        val listFood = ArrayList<Category>()
-
-        for (i in name.indices){
-            val food = Category(name[i],dataImg.getResourceId(i,-1))
-            listFood.add(food)
-        }
-        return listFood
+            return binding.root
 
     }
 
@@ -162,74 +68,75 @@ class HomeFragment : Fragment() {
         imageView.setImageResource(drawable[if (viewList) 0 else 1])
     }
 
-    private fun showRecycleView (){
-        binding.verticalRv.layoutManager = GridLayoutManager(requireActivity() , 2)
-        val foodAdapter = HorizontalAdapter(foodData)
-        binding.verticalRv.adapter = foodAdapter
-    }
-
-    private  fun showCategory() {
-        binding.horizontalRev.layoutManager =
-        LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-        binding.horizontalRev.adapter = CategoryAdapter(getCategory())
-    }
-
-
-    private fun showGridMenu(){
-        binding.verticalRv.layoutManager = GridLayoutManager(requireActivity(), 2)
-        val adapterFodd = HorizontalAdapter(foodData, gridMode = true)
-        binding.verticalRv.adapter = adapterFodd
-    }
-
-    private fun showLinearmenu(){
-        binding.verticalRv.layoutManager = LinearLayoutManager(requireActivity())
-        val adapterFodd = HorizontalAdapter(foodData, gridMode = false)
-        binding.verticalRv.adapter = adapterFodd
-    }
-
-
-    //ditambah tipe data
-    private fun toggleReycylerView(viewList: Boolean) {
-        foodData.clear()
-
-        typeLayout = if (viewList) {
-            showGridMenu()
-            true
+    private fun showList(data: ListMenu){
+        if (viewList){
+            val adapter = HorizontalAdapter(viewList, object : HorizontalAdapter.OnClickListener{
+                override fun itemClick(data: DataListMenu) {
+                    navigatetoDetail(data)
+                }
+            })
+            adapter.sendListMenu(data.data)
+            binding.verticalRv.layoutManager = GridLayoutManager(requireActivity(),2)
+            binding.verticalRv.adapter = adapter
         } else {
-            showLinearmenu()
-            false
-        }
+            val adapter = HorizontalAdapter(viewList, object  : HorizontalAdapter.OnClickListener {
+                override fun itemClick(data: DataListMenu) {
+                    navigatetoDetail(data)
+                }
 
-        val adapter = HorizontalAdapter(foodData, gridMode = typeLayout, onItemClick = {
-            itemClicked()
+            })
+            adapter.sendListMenu(data.data)
+            binding.verticalRv.layoutManager = LinearLayoutManager(requireActivity())
+            binding.verticalRv.adapter = adapter
+        }
+    }
+
+
+    private fun showCategory(data: CategoryMenu){
+        val adapter = CategoryAdapter()
+
+        adapter.sendCategoryMenu(data.data)
+        binding.horizontalRev.layoutManager= LinearLayoutManager(requireActivity(), LinearLayoutManager. HORIZONTAL, false)
+        binding.horizontalRev.adapter = adapter
+    }
+
+    private fun navigatetoDetail(data: DataListMenu){
+        val bundle= bundleOf("DataListMenu" to data)
+        findNavController().navigate(R.id.action_homeFragment_to_detailFragmentMenu,bundle)
+    }
+
+    private fun fetchListMenu(){
+        APIClient.instance.getListMenu().enqueue(object : Callback<ListMenu> {
+            override fun onResponse(call: Call<ListMenu>, response: Response<ListMenu>) {
+                val body: ListMenu? = response.body()
+                if (response.code()== 200){
+                    showList(body!!)
+                }
+
+            }
+
+            override fun onFailure(call: Call<ListMenu>, t: Throwable) {
+                Log.e("ListMenuError", t.message.toString())
+            }
+
         })
-
-        foodData.addAll(getFood())
-        binding.verticalRv.adapter = adapter
-    }
-    //baru dibuat
-    @SuppressLint("NotifyDataSetChanged")
-    private fun updateRv(menuItem: ArrayList<ParcelMakanan>){
-        horizontalAdapter.reloadData(menuItem)
-        horizontalAdapter.gridMode = homeViewModel.menuView.value?: true
-        binding.verticalRv.adapter?.notifyDataSetChanged()
-
     }
 
-    //baru dibuat
-    private fun toggleCurrent(){
-        val togleImg = binding.imageButton
-        val currentLayout: Boolean =
-            homeViewModel.menuView.value ?: userPreference.getPrefLayout()
+    private fun fetchCategoryMenu(){
+        APIClient.instance.getCategory().enqueue(object : Callback<CategoryMenu> {
+            override fun onResponse(call: Call<CategoryMenu>, response: Response<CategoryMenu>) {
+                val body: CategoryMenu? = response.body()
+                if (response.code() == 200) {
+                    showCategory(body!!)
 
-        toggleReycylerView(currentLayout)
-        togleImg.setImageResource(if (currentLayout) R.drawable.list_format else R.drawable.griddddd)
+                }
+            }
 
-        togleImg.setOnClickListener {
-            val newValueList =!currentLayout
-            homeViewModel.menuView.value = newValueList
-            userPreference.savePrefLayout(newValueList)
-        }
+            override fun onFailure(call: Call<CategoryMenu>, t: Throwable) {
+                Log.e("CategoryMenuError", t.message.toString())
+            }
+
+        })
     }
 
 }
