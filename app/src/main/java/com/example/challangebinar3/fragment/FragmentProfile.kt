@@ -1,20 +1,33 @@
 package com.example.challangebinar3.fragment
 
-import android.app.Dialog
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.challangebinar3.R
 import com.example.challangebinar3.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
+import java.io.ByteArrayOutputStream
 
 
 class FragmentProfile : Fragment() {
+
+    companion object{
+        const val REQUEST_CAMERA = 100
+    }
+    private lateinit var imgUri: Uri
 
     private lateinit var binding: FragmentProfileBinding
     private var userAuth: FirebaseUser? = null
@@ -34,6 +47,7 @@ class FragmentProfile : Fragment() {
 
 
 
+
         return binding.root
     }
 
@@ -41,18 +55,73 @@ class FragmentProfile : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val _auth = FirebaseAuth.getInstance()
-        userAuth = _auth.currentUser
+        val _userAuth = _auth.currentUser
 
-        if (userAuth != null){
-           val email = userAuth!!.email
-           val username = userAuth!!.displayName
-           val phoneNumber = userAuth!!.phoneNumber
+        if (_userAuth != null){
+            if (_userAuth.photoUrl != null){
+                Picasso.get().load(_userAuth.photoUrl).into(binding.imgProfile)
+            } else {
+                Picasso.get().load("https://picsum.photos/seed/picsum/200/3000").into(binding.imgProfile)
+            }
 
-            binding.etUsername.text= username
-            binding.etEmail.text = email
-            binding.etNoTelepon.text = phoneNumber
+            binding.etUsername.setText(_userAuth.displayName)
+            binding.etEmail.setText(_userAuth.email)
+            binding.etNoTelepon.setText(_userAuth.phoneNumber)
+
+            if (_userAuth.isEmailVerified){
+                binding.verified.visibility = View.VISIBLE
+            } else {
+                binding.unverif.visibility = View.VISIBLE
+            }
+
+            if (_userAuth.phoneNumber.isNullOrEmpty()){
+                binding.etNoTelepon.setText("")
+            } else{
+                binding.etNoTelepon.setText(_userAuth.phoneNumber)
+            }
+        }
+
+        binding.imgProfile.setOnClickListener {
+            toCamera()
+        }
+        binding.btnSave.setOnClickListener {
+            val image = when{
+                ::imgUri.isInitialized -> imgUri
+                _userAuth?.photoUrl == null -> Uri.parse("https://picsum.photos/seed/picsum/200/3000")
+                else -> _userAuth.photoUrl
+            }
+            val names = binding.etUsername.text.toString().trim()
+
+            if (names.isEmpty()){
+                binding.etUsername.error = "Username harus diisi"
+                binding.etUsername.requestFocus()
+                return@setOnClickListener
+            }
+
+            UserProfileChangeRequest.Builder()
+                .setDisplayName(names)
+                .setPhotoUri(image)
+                .build().also {
+                    userAuth?.updateProfile(it)?.addOnCompleteListener {
+                        if (it.isSuccessful){
+                            Toast.makeText(activity, "ProfileUpdated", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(activity, "${it.exception?.message}",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
 
         }
+//        if (userAuth != null){
+//           val email = userAuth!!.email
+//           val username = userAuth!!.displayName
+//           val phoneNumber = userAuth!!.phoneNumber
+//
+//            binding.etUsername.text= username
+//            binding.etEmail.text = email
+//            binding.etNoTelepon.text = phoneNumber
+//
+//        }
 //        auth = FirebaseAuth.getInstance()
 //        uid = auth.currentUser?.uid.toString()
 //        databaseReference = FirebaseDatabase.getInstance().getReference("user")
@@ -64,6 +133,7 @@ class FragmentProfile : Fragment() {
             logoutUser()
         }
 
+
     }
 
     private fun logoutUser() {
@@ -72,6 +142,46 @@ class FragmentProfile : Fragment() {
         findNavController().navigate(R.id.action_fragmentProfile_to_userLogin)
         activity?.finish()
     }
+
+    private fun toCamera(){
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {intent ->
+            activity?.packageManager?.let {
+                intent.resolveActivity(it).also {
+                    startActivityForResult(intent, REQUEST_CAMERA)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK){
+            val imgBitmap = data?.extras?.get("data") as Bitmap
+            uploadImage(imgBitmap)
+        }
+    }
+
+    private fun uploadImage(imgBitmap: Bitmap) {
+        val baos = ByteArrayOutputStream()
+        val refre = FirebaseStorage.getInstance().reference.child("img/${FirebaseAuth.getInstance()
+            .currentUser?.uid}")
+
+        imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100,baos)
+        val img = baos.toByteArray()
+
+        refre.putBytes(img)
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    refre.downloadUrl.addOnCompleteListener{
+                        it.result?.let {
+                            imgUri = it
+                            binding.imgProfile.setImageBitmap(imgBitmap)
+                        }
+                    }
+                }
+            }
+    }
+
 
 //    private fun dataUser(){
 //        databaseReference.child(uid).addValueEventListener(object : ValueEventListener {
