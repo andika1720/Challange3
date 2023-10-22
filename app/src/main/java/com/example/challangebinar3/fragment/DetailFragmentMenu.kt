@@ -14,10 +14,11 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.challangebinar3.ParcelMakanan
+import com.bumptech.glide.Glide
 import com.example.challangebinar3.R
 import com.example.challangebinar3.ViewModel.DetailFragmentMenuViewModel
 import com.example.challangebinar3.ViewModel.ViewModelFactory
+import com.example.challangebinar3.dataApi.model.DataListMenu
 import com.example.challangebinar3.databinding.FragmentDetailMenuBinding
 
 
@@ -30,7 +31,7 @@ class DetailFragmentMenu : Fragment() {
     private val url: String = "https://maps.app.goo.gl/CAN7FLsRkUeRZ2dTA"
 
     private lateinit var  viewModel: DetailFragmentMenuViewModel
-    private var item: ParcelMakanan? = null
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -61,7 +62,6 @@ class DetailFragmentMenu : Fragment() {
             wViewModel()
 
 
-
             binding.tvLokasi.setOnClickListener {
                 try {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -82,10 +82,7 @@ class DetailFragmentMenu : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
 
     private fun btnBack() {
         binding.buttonBack.setOnClickListener {
@@ -110,16 +107,19 @@ class DetailFragmentMenu : Fragment() {
     //menerima data dari homefragment
     private fun setData() {
         @Suppress("DEPRECATION")
-        item = arguments?.getParcelable("item")
+        val item = arguments?.getParcelable<DataListMenu>("dataListMenu")
 
         Log.e("isi item parcel", item.toString())
         item?.let {
-            binding.ivDetail.setImageResource(it.image)
-            binding.nameMenu.text = item?.name
-            binding.priceMenu.text = item?.harga.toString()
-            binding.descDetailMenu.text = item?.desc
+            Glide.with(binding.ivDetail)
+                .load(item.imageUrl)
+                .fitCenter()
+                .into(binding.ivDetail)
+            binding.nameMenu.text = item.nama
+            binding.priceMenu.text = item.hargaFormat
+            binding.descDetailMenu.text = item.detail
 
-            viewModel.initSelectedItem(it)
+            viewModel.initSelectedItem(item!!)
         }
     }
 

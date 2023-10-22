@@ -32,7 +32,14 @@
         android:id="@+id/fragmentProfile"
         android:name="com.example.challangebinar3.fragment.FragmentProfile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragmentProfile_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_fragmentProfile_to_userLogin"
+            app:destination="@id/userLogin" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentCart"
         android:name="com.example.challangebinar3.fragment.FragmentCart"
@@ -50,4 +57,14 @@
         android:name="com.example.challangebinar3.fragment.FragmentKonfirmasiPesanan"
         android:label="fragment_konfirmasi_pesanan"
         tools:layout="@layout/fragment_konfirmasi_pesanan" />
+    <activity
+        android:id="@+id/userRegister"
+        android:name="com.example.challangebinar3.UserRegister"
+        android:label="activity_user_register"
+        tools:layout="@layout/activity_user_register" />
+    <activity
+        android:id="@+id/userLogin"
+        android:name="com.example.challangebinar3.UserLogin"
+        android:label="activity_user_login"
+        tools:layout="@layout/activity_user_login" />
 </navigation>

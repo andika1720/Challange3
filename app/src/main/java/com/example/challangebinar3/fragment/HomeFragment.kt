@@ -14,7 +14,6 @@ import com.example.challangebinar3.CategoryAdapter
 import com.example.challangebinar3.HorizontalAdapter
 import com.example.challangebinar3.R
 import com.example.challangebinar3.SharePreference
-import com.example.challangebinar3.ViewModel.HomeViewModel
 import com.example.challangebinar3.dataApi.Api.APIClient
 import com.example.challangebinar3.dataApi.model.CategoryMenu
 import com.example.challangebinar3.dataApi.model.DataListMenu
@@ -31,7 +30,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var homeViewModel: HomeViewModel
     private var viewList : Boolean = true
 
     private val drawable = arrayListOf(
@@ -45,14 +43,14 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        viewList = SharePreference.read("VIEW LIST", true)
+        viewList = SharePreference.getPref("VIEW LIST", true)
 
             val toggleButton = binding.imageButton
 
             toggleButton.setOnClickListener {
                 viewList = !viewList
                 toggleImageViewImage(toggleButton)
-                SharePreference.write("viewList", viewList)
+                SharePreference.setPref("viewList", viewList)
                 fetchListMenu()
             }
             fetchCategoryMenu()

@@ -36,7 +36,7 @@
     <string name="tv_template">Pesan makanan dengan aplikasi\n dan dapatkan diskonmu</string>
     <string name="Rp_55_000">Rp 55.000</string>
     <string name="rp">Rp.</string>
-    <string name="tambah_ke_keranjang_rp_20_000">Tambah Ke Keranjang -Rp.20.000</string>
+    <string name="tambah_ke_keranjang_rp_20_000">Tambah Ke Keranjang </string>
     <string name="jl_kalibata_tengah_iii_no_2_rw_3_kalibata_pancoran_south_jakarta_city_jakarta_12740">Jl. Kalibata Tengah III No.2, RW.3, Kalibata, Pancoran, South Jakarta City, Jakarta 12740</string>
     <string name="button_kembali">button kembali</string>
     <string name="hidangan_asia_yang_lezat_dengan_mie_digoreng_dalam_bumbu_rempah_kaya_sayuran_dan_protein_pilihan">Hidangan Asia yang lezat, dengan mie digoreng dalam bumbu rempah kaya, sayuran, dan protein pilihan</string>
@@ -69,10 +69,10 @@
     <string name="total">Total =</string>
     <string name="login">LOGIN</string>
     <string name="your_password">Your Password</string>
-    <string name="your_username">Your Email</string>
+    <string name="your_username">Your Username</string>
     <string name="iv_loginsession">IV_Loginsession</string>
     <string name="password_login">Password</string>
-    <string name="username_login">Email</string>
+    <string name="username_login">Username</string>
     <string name="forgot_your_password_login">Forgot Your Password?</string>
     <string name="don_t_have_an_account_login">Don\'t have an account?</string>
     <string name="register_login">Register</string>

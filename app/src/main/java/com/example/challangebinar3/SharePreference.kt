@@ -12,11 +12,11 @@ object SharePreference {
         prefe = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     }
 
-    fun read(key: String, value: Boolean): Boolean{
+    fun getPref(key: String, value: Boolean): Boolean{
         return prefe.getBoolean(key, value)
     }
 
-    fun write(key: String, value: Boolean) {
+    fun setPref(key: String, value: Boolean) {
         val editor: SharedPreferences.Editor = prefe.edit()
         with(editor){
             putBoolean(key, value)

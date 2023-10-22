@@ -5,8 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.challangebinar3.Database.Cart
+import com.example.challangebinar3.Database.CartDao
+import com.example.challangebinar3.Database.CartDatabase
 import com.example.challangebinar3.Database.CartRepo
 import com.example.challangebinar3.ParcelMakanan
+import com.example.challangebinar3.dataApi.model.DataListMenu
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 class DetailFragmentMenuViewModel(application: Application): ViewModel() {
@@ -14,22 +19,27 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
     private val _counter= MutableLiveData(1)
     val counter: LiveData<Int> = _counter
 
-    private val _totalPrice = MutableLiveData<Int>()
-    val  totalPrice : LiveData<Int> = _totalPrice
+    private val _totalPrice = MutableLiveData<Int?>()
+    val  totalPrice : MutableLiveData<Int?> = _totalPrice
 
-    private val _selectedItem = MutableLiveData<ParcelMakanan>()
+    private val _selectedItem = MutableLiveData<DataListMenu>()
 
-    private val cartRepo: CartRepo
+    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+
+    private val cardDao: CartDao
 
     init {
-        cartRepo = CartRepo(application)
+        val database = CartDatabase.getInstance(application)
+        cardDao = database.cartDao
     }
 
     private fun insert(cart: Cart) {
-        cartRepo.insert(cart)
+        executorService.execute{
+            cardDao.insert(cart)
+        }
     }
 
-    fun initSelectedItem(item: ParcelMakanan){
+    fun initSelectedItem(item: DataListMenu){
         _selectedItem.value = item
         _totalPrice.value = item.harga
 
@@ -38,7 +48,7 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
         val currentAmount = _counter.value ?: 1
         val selectedItem = _selectedItem.value
         if (selectedItem != null){
-            val totalPrice = selectedItem.harga * currentAmount
+            val totalPrice = selectedItem.harga?.times(currentAmount)
             _totalPrice.value = totalPrice
         }
 
@@ -66,8 +76,8 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
                 totalPrice.value?.let { it1 ->
                     counter.value?.let { it2 ->
                         Cart(
-                            foodName = it.name,
-                            imgId = it.image,
+                            foodName = it.nama.toString(),
+                            imgId = it.imageUrl.toString(),
                             priceMenu = it.harga,
                             foodQuantity = it2,
                             totalPrice = it1,
@@ -75,6 +85,7 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
                         )
                     }
                 }
+
             cartItem?.let { it1 -> insert(it1) }
         }
     }

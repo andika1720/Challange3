@@ -16,7 +16,7 @@ import com.example.challangebinar3.databinding.VerticalItemBinding
 
 class HorizontalAdapter(
     var gridMode : Boolean = true,
-    var onItemClick:OnClickListener
+    private val onItemClick:OnClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private val differ = object : DiffUtil.ItemCallback<DataListMenu>(){
@@ -74,7 +74,7 @@ class HorizontalAdapter(
     }
 
     override fun getItemCount(): Int {
-        return dif.currentList.size-1
+        return dif.currentList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
