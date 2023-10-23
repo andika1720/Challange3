@@ -5,29 +5,33 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Cart::class], version = 1)
+
+@Database(entities = [Cart::class], version = 2)
 abstract class CartDatabase: RoomDatabase() {
 
     abstract val cartDao: CartDao
 
     companion object {
-
         @Volatile
         private var INSTANCE: CartDatabase? = null
 
-        fun getInstance(context: Context): CartDatabase {
-            synchronized(this){
-                var instance = INSTANCE
 
-                if (instance == null){
-                    instance = Room.databaseBuilder(context.applicationContext,
-                        CartDatabase::class.java,"cart_database"
+        fun getInstance(context: Context): CartDatabase {
+
+            if (INSTANCE == null) {
+                synchronized(CartDatabase::class.java) {
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        CartDatabase::class.java, "cart_database"
                     )
+                        .fallbackToDestructiveMigration()
+                        //.addMigrations(Migration1to2())
                         .build()
-                    INSTANCE = instance
-                    }
-                return instance
                 }
             }
-        }
+                return INSTANCE as CartDatabase
+            }
+
     }
+}
+

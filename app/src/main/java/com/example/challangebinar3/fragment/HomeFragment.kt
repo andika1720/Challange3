@@ -98,8 +98,10 @@ class HomeFragment : Fragment() {
         binding.horizontalRev.adapter = adapter
     }
 
-    private fun navigatetoDetail(data: DataListMenu){
+    private fun navigatetoDetail(data: DataListMenu) {
+
         val bundle= bundleOf("DataListMenu" to data)
+        Log.e("Bundle", bundle.toString())
         findNavController().navigate(R.id.action_homeFragment_to_detailFragmentMenu,bundle)
     }
 

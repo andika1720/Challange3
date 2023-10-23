@@ -16,11 +16,11 @@ import java.util.concurrent.Executors
 
 class DetailFragmentMenuViewModel(application: Application): ViewModel() {
 
-    private val _counter= MutableLiveData(1)
+    private val _counter = MutableLiveData(1)
     val counter: LiveData<Int> = _counter
 
     private val _totalPrice = MutableLiveData<Int?>()
-    val  totalPrice : MutableLiveData<Int?> = _totalPrice
+    val totalPrice: MutableLiveData<Int?> = _totalPrice
 
     private val _selectedItem = MutableLiveData<DataListMenu>()
 
@@ -28,42 +28,44 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
 
     private val cardDao: CartDao
 
+    private val cartRepo: CartRepo = CartRepo(application)
+
     init {
         val database = CartDatabase.getInstance(application)
         cardDao = database.cartDao
     }
 
     private fun insert(cart: Cart) {
-        executorService.execute{
-            cardDao.insert(cart)
-        }
+            cartRepo.insert(cart)
+
     }
 
-    fun initSelectedItem(item: DataListMenu){
+    fun initSelectedItem(item: DataListMenu) {
         _selectedItem.value = item
         _totalPrice.value = item.harga
 
     }
-    private fun total(){
+
+    private fun total() {
         val currentAmount = _counter.value ?: 1
         val selectedItem = _selectedItem.value
-        if (selectedItem != null){
+        if (selectedItem != null) {
             val totalPrice = selectedItem.harga?.times(currentAmount)
             _totalPrice.value = totalPrice
         }
 
     }
 
-    fun increment(){
+    fun increment() {
         _counter.value = (_counter.value ?: 1) + 1
         total()
 
     }
 
-    fun decrement(){
+    fun decrement() {
         val currentValues: Int = _counter.value ?: 1
-        if (currentValues > 1){
-            _counter.value =currentValues -1
+        if (currentValues > 1) {
+            _counter.value = currentValues - 1
         }
         total()
     }
@@ -87,7 +89,9 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
                 }
 
             cartItem?.let { it1 -> insert(it1) }
-        }
-    }
 
+        }
+
+    }
 }
+

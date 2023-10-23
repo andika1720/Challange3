@@ -15,6 +15,9 @@ class CartRepo(application: Application) {
         _cartDao = db.cartDao
     }
 
+    fun getItemByName(foodName : String): LiveData<Cart>{
+        return _cartDao.getItem(foodName)
+    }
     fun insert(cart: Cart) {
         executorService.execute { _cartDao.insert(cart) }
     }
@@ -24,7 +27,7 @@ class CartRepo(application: Application) {
     fun deleteItems(){
         executorService.execute {_cartDao.deleteItems()}
     }
-    fun deleteItemCart(cartId : Long) {
+    fun deleteItemCart(cartId : Int) {
       executorService.execute {_cartDao.deleteItemById(cartId) }
     }
 

@@ -24,7 +24,7 @@ class CartViewModel(application: Application):ViewModel() {
 
     val orderSucces: LiveData<Boolean> = mOrderSuccess
 
-    fun deleteItemCart(cartId: Long) {
+    fun deleteItemCart(cartId: Int) {
         repository.deleteItemCart(cartId)
     }
 

@@ -23,8 +23,10 @@ interface CartDao {
     fun delete(cart: Cart)
 
     @Query("DELETE FROM cart_menu WHERE id = :itemId")
-    fun deleteItemById(itemId: Long)
+    fun deleteItemById(itemId: Int):Int
 
     @Update
     fun update(cart: Cart)
+    @Query("SELECT * FROM cart_menu WHERE food_name = :foodName")
+    fun getItem(foodName: String): LiveData<Cart>
 }

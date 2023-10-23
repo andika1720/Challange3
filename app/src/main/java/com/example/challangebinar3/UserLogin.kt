@@ -13,7 +13,6 @@ class UserLogin : AppCompatActivity() {
     private lateinit var sharedPreference: UserSharedPreference
     private lateinit var auth: FirebaseAuth
 
-    var firebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserLoginBinding.inflate(layoutInflater)

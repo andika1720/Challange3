@@ -20,6 +20,7 @@ import com.example.challangebinar3.databinding.FragmentKonfirmasiPesananBinding
 
 class FragmentKonfirmasiPesanan : Fragment() {
     private lateinit var binding: FragmentKonfirmasiPesananBinding
+
     private lateinit var cartViewModel: CartViewModel
 
     override fun onCreateView(
@@ -28,7 +29,10 @@ class FragmentKonfirmasiPesanan : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentKonfirmasiPesananBinding.inflate(inflater, container, false)
-
+        setCartVm()
+        getConfirm()
+        showRv()
+        payment()
         cartViewModel.orderSucces.observe(viewLifecycleOwner) {
             if (it) {
                 Toast.makeText(requireContext(), "OrderSuccses", Toast.LENGTH_SHORT).show()
@@ -39,10 +43,7 @@ class FragmentKonfirmasiPesanan : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setCartVm()
-        getConfirm()
-        showRv()
-        payment()
+
     }
 
     private fun getConfirm(): Int {
