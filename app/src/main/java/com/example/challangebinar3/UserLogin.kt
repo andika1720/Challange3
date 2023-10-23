@@ -51,6 +51,7 @@ class UserLogin : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
+                    sharedPreference.saveLogin(true)
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     //sharedPreference.saveLogin(true)

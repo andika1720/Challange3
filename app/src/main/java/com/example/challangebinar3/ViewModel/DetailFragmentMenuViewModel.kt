@@ -88,8 +88,9 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
                     }
                 }
 
-            cartItem?.let { it1 -> insert(it1) }
 
+            cartItem?.let { it1 -> insert(it1) }
+            //cartItem?.let { it1 -> cartRepo.addCartToUpdate(it1) }
         }
 
     }

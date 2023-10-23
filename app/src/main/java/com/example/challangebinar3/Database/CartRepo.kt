@@ -15,11 +15,11 @@ class CartRepo(application: Application) {
         _cartDao = db.cartDao
     }
 
-//    fun addCartToUpdate(cart: Cart){
-//        executorService.execute {
-//            _cartDao.updateCartMenu(cart)
-//        }
-//    }
+    fun addCartToUpdate(cart: Cart){
+        executorService.execute {
+            _cartDao.updateCartMenu(cart)
+        }
+    }
     fun insert(cart: Cart) {
         executorService.execute { _cartDao.insert(cart) }
     }
