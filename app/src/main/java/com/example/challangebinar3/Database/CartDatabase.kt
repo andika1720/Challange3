@@ -25,6 +25,7 @@ abstract class CartDatabase: RoomDatabase() {
                         CartDatabase::class.java, "cart_database"
                     )
                         .fallbackToDestructiveMigration()
+                        //migrasiversion 1 to 2
                         //.addMigrations(Migration1to2())
                         .build()
                 }

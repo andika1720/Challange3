@@ -100,7 +100,7 @@ class HomeFragment : Fragment() {
 
     private fun navigatetoDetail(data: DataListMenu) {
 
-        val bundle= bundleOf("DataListMenu" to data)
+        val bundle= bundleOf("key" to data)
         Log.e("Bundle", bundle.toString())
         findNavController().navigate(R.id.action_homeFragment_to_detailFragmentMenu,bundle)
     }

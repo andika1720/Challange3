@@ -54,16 +54,6 @@
         app:layout_constraintTop_toBottomOf="@id/iv_detail"/>
 
     <TextView
-        android:id="@+id/rpPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rp"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/priceMenu"
-        app:layout_constraintTop_toTopOf="@id/priceMenu" />
-
-    <TextView
         android:id="@+id/descDetailMenu"
         android:layout_width="358dp"
         android:layout_height="wrap_content"

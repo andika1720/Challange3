@@ -69,10 +69,10 @@
     <string name="total">Total =</string>
     <string name="login">LOGIN</string>
     <string name="your_password">Your Password</string>
-    <string name="your_username">Your Username</string>
+    <string name="your_username">Your Email</string>
     <string name="iv_loginsession">IV_Loginsession</string>
     <string name="password_login">Password</string>
-    <string name="username_login">Username</string>
+    <string name="username_login">Email</string>
     <string name="forgot_your_password_login">Forgot Your Password?</string>
     <string name="don_t_have_an_account_login">Don\'t have an account?</string>
     <string name="register_login">Register</string>

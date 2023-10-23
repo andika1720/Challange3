@@ -107,7 +107,7 @@ class DetailFragmentMenu : Fragment() {
     //menerima data dari homefragment
     private fun setData() {
         @Suppress("DEPRECATION")
-        val item = arguments?.getParcelable<DataListMenu>("DataListMenu")
+        val item = arguments?.getParcelable<DataListMenu>("key")
 
         Log.e("isi item parcel", item.toString())
         item?.let {

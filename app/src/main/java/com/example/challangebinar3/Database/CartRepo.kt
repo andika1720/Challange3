@@ -15,9 +15,11 @@ class CartRepo(application: Application) {
         _cartDao = db.cartDao
     }
 
-    fun getItemByName(foodName : String): LiveData<Cart>{
-        return _cartDao.getItem(foodName)
-    }
+//    fun addCartToUpdate(cart: Cart){
+//        executorService.execute {
+//            _cartDao.updateCartMenu(cart)
+//        }
+//    }
     fun insert(cart: Cart) {
         executorService.execute { _cartDao.insert(cart) }
     }
