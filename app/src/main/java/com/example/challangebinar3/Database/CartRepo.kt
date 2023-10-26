@@ -15,7 +15,7 @@ class CartRepo(application: Application) {
         _cartDao = db.cartDao
     }
 
-    fun addCartToUpdate(cart: Cart){
+    fun addCartToUpdate(cart: Cart) {
         executorService.execute {
             _cartDao.updateCartMenu(cart)
         }

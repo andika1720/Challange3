@@ -8,7 +8,6 @@ import com.example.challangebinar3.Database.Cart
 import com.example.challangebinar3.Database.CartDao
 import com.example.challangebinar3.Database.CartDatabase
 import com.example.challangebinar3.Database.CartRepo
-import com.example.challangebinar3.ParcelMakanan
 import com.example.challangebinar3.dataApi.model.DataListMenu
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -88,9 +87,8 @@ class DetailFragmentMenuViewModel(application: Application): ViewModel() {
                     }
                 }
 
-
-            cartItem?.let { it1 -> insert(it1) }
-            //cartItem?.let { it1 -> cartRepo.addCartToUpdate(it1) }
+            //cartItem?.let { it1 -> insert(it1) }
+            cartRepo.addCartToUpdate(cartItem!!)
         }
 
     }
