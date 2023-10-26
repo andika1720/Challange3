@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Cart::class], version = 2)
+@Database(entities = [Cart::class], version = 3)
 abstract class CartDatabase: RoomDatabase() {
 
     abstract val cartDao: CartDao
@@ -26,7 +26,7 @@ abstract class CartDatabase: RoomDatabase() {
                     )
                         .fallbackToDestructiveMigration()
                         //migrasiversion 1 to 2
-                        //.addMigrations(Migration1to2())
+                        //addMigrations(Migration2to3())
                         .build()
                 }
             }

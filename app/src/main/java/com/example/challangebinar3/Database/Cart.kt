@@ -16,11 +16,11 @@ data class Cart (
     @ColumnInfo(name = "img_Id")
     var imgId: String,
     @ColumnInfo(name ="food_Price")
-    var priceMenu: Int? = 0,
+    var priceMenu: Int,
     @ColumnInfo(name = "food_Quantity")
-    var foodQuantity: Int,
+    var foodQuantity: Int = 1,
     @ColumnInfo(name = "total_Price")
-    var totalPrice: Int,
+    var totalPrice: Int? = 0,
     @ColumnInfo(name = "food_Note")
     var foodNote: String?
 

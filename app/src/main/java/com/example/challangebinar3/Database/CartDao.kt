@@ -31,14 +31,16 @@ interface CartDao {
         fun getItem(foodName: String): Cart?
 
 
-        fun updateCartMenu(cart: Cart){
-            val existingItem = getItem(cart.foodName)
+        fun updateCartMenu(cartt: Cart){
+            val existingItem = getItem(cartt.foodName)
             if (existingItem != null) {
-                val newQuantity = existingItem.foodQuantity + cart.foodQuantity
+                val newQuantity = existingItem.foodQuantity + cartt.foodQuantity
+                val TotalPrice = newQuantity * existingItem.priceMenu
                 existingItem.foodQuantity = newQuantity
+                existingItem.totalPrice = TotalPrice
                 update(existingItem)
             } else {
-                insert(cart)
+                insert(cartt)
             }
         }
 }

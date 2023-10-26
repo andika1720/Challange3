@@ -57,7 +57,7 @@ class FragmentKonfirmasiPesanan : Fragment() {
                 listMenu += "${item.foodName} - ${item.foodQuantity} x ${item.priceMenu}\n"
                 priceMenu += "Rp. ${item.totalPrice}\n "
                 total1 = "Total = "
-                totalPrice += (item.totalPrice)
+                totalPrice += item.totalPrice!!
             }
 
             val totalText = "Rp. $totalPrice"
@@ -84,7 +84,7 @@ class FragmentKonfirmasiPesanan : Fragment() {
 
             if (orderItems.isNotEmpty()){
                 val orderReq = DataOrders(username, getConfirm(), orderItems.map {
-                    ItemOrder(it.foodName,it.foodQuantity,it.foodNote, it.totalPrice)
+                    ItemOrder(it.foodName,it.foodQuantity,it.foodNote, it.totalPrice!!)
                 })
 
                 cartViewModel.postData(orderReq)
@@ -105,7 +105,7 @@ class FragmentKonfirmasiPesanan : Fragment() {
             adapter.setData(it)
             var totalPrice = 0
             it.forEach { item ->
-                totalPrice += item.totalPrice
+                totalPrice += item.totalPrice!!
             }
         }
     }
