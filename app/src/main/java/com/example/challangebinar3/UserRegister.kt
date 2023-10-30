@@ -32,8 +32,8 @@ class UserRegister : AppCompatActivity() {
 
         binding.buttonReg.setOnClickListener {
             val email = binding.etEmailRegis.text.toString()
-            val username = binding.etUsernameRegis.text.toString()
             val pass = binding.etPwRegis.text.toString()
+            val username = binding.etUsernameRegis.text.toString()
             val noTelp = binding.etNoTelepon.text.toString()
             val intent = Intent(this, UserLogin::class.java)
             startActivity(intent)
@@ -44,15 +44,16 @@ class UserRegister : AppCompatActivity() {
                         return@setOnClickListener
                     }
 
-                    username.isEmpty() -> {
-                        Toast.makeText(this, "Username belum terisi", Toast.LENGTH_SHORT).show()
-                        binding.etUsernameRegis.requestFocus()
-                        return@setOnClickListener
-                    }
 
                     pass.isEmpty() -> {
                         Toast.makeText(this, "Password Belum terisi", Toast.LENGTH_SHORT).show()
                         binding.etPwRegis.requestFocus()
+                        return@setOnClickListener
+                    }
+
+                    username.isEmpty() -> {
+                        Toast.makeText(this, "Username belum terisi", Toast.LENGTH_SHORT).show()
+                        binding.etUsernameRegis.requestFocus()
                         return@setOnClickListener
                     }
 
@@ -62,7 +63,7 @@ class UserRegister : AppCompatActivity() {
                         return@setOnClickListener
                     }
                 }
-            register(email,username, pass, noTelp )
+            register(email,pass,username, noTelp )
         }
     }
 
@@ -71,7 +72,7 @@ class UserRegister : AppCompatActivity() {
             .addOnCompleteListener(this){ it ->
                 if (it.isSuccessful){
                     val dbUser = database.reference.child("user").child(auth.currentUser!!.uid)
-                    val user  = User(username, email, notelp, auth.currentUser!!.uid)
+                    val user  = User(email,password,username, notelp, auth.currentUser!!.uid)
 
                     dbUser.setValue(user).addOnCompleteListener {
                         if (it.isSuccessful)

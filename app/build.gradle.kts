@@ -5,6 +5,7 @@ plugins {
     id ("kotlin-kapt")
     id ("kotlin-parcelize")
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -58,6 +59,9 @@ dependencies {
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+
+    implementation("com.google.firebase:firebase-analytics:21.4.0")
+    implementation("com.google.firebase:firebase-crashlytics:18.5.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")

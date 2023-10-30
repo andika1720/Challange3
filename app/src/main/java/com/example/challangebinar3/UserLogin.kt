@@ -3,6 +3,7 @@ package com.example.challangebinar3
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import com.example.challangebinar3.databinding.ActivityUserLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -42,7 +43,7 @@ class UserLogin : AppCompatActivity() {
                     return@setOnClickListener
                 }
             }
-            login(email,password)
+            login(email, password)
         }
     }
 
@@ -64,7 +65,7 @@ class UserLogin : AppCompatActivity() {
                 }
             }
     }
-
 }
+
 
 
