@@ -1,5 +1,4 @@
 package com.example.challangebinar3
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,8 +24,8 @@ class UserLogin : AppCompatActivity() {
 
         binding.tvRegisLogin.setOnClickListener {
             startActivity(Intent(this, UserRegister::class.java))
-            finish()
-        }
+            finish() }
+
         binding.buttonLogin.setOnClickListener {
             val email: String = binding.etUsernameLogin.text.toString()
             val password: String = binding.etPwLogin.text.toString()
