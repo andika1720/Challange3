@@ -1,4 +1,4 @@
-package com.example.challangebinar3.fragment
+package com.example.challangebinar3.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.challangebinar3.CartAdapter
+import com.example.challangebinar3.adapter.CartAdapter
 import com.example.challangebinar3.R
 import com.example.challangebinar3.ViewModel.CartViewModel
 import com.example.challangebinar3.ViewModel.ViewModelFactory

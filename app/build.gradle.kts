@@ -97,4 +97,10 @@ dependencies {
     //picaso
     implementation("com.squareup.picasso:picasso:2.8")
 
+    implementation ("io.insert-koin:koin-core:3.5.0")
+    implementation ("io.insert-koin:koin-android:3.5.0")
+    implementation ("io.insert-koin:koin-android-compat:3.3.0")
+    implementation ("io.insert-koin:koin-androidx-workmanager:3.3.0")
+    implementation ("io.insert-koin:koin-androidx-navigation:3.3.0")
+
 }

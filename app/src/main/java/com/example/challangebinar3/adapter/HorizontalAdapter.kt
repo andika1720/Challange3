@@ -1,4 +1,4 @@
-package com.example.challangebinar3
+package com.example.challangebinar3.adapter
 
 
 
@@ -15,8 +15,8 @@ import com.example.challangebinar3.databinding.VerticalItemBinding
 
 
 class HorizontalAdapter(
-    var gridMode : Boolean = true,
-    private val onItemClick:OnClickListener
+    private var gridMode : Boolean = true,
+    private val onItemClick: OnClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private val differ = object : DiffUtil.ItemCallback<DataListMenu>(){

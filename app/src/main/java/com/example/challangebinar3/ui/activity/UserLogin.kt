@@ -1,10 +1,10 @@
-package com.example.challangebinar3
+package com.example.challangebinar3.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import com.example.challangebinar3.databinding.ActivityUserLoginBinding
+import com.example.challangebinar3.util.UserSharedPreference
 import com.google.firebase.auth.FirebaseAuth
 
 

@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_view_wait"
         android:layout_centerHorizontal="true"
-        android:text="Harap Tunggu........."
+        android:text="@string/harap_tunggu"
         android:textColor="@color/black"
         android:textSize="15sp"/>
 

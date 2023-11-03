@@ -1,4 +1,4 @@
-package com.example.challangebinar3
+package com.example.challangebinar3.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent

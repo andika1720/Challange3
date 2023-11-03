@@ -1,4 +1,4 @@
-package com.example.challangebinar3.fragment
+package com.example.challangebinar3.ui.fragment
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,10 +10,10 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.challangebinar3.CategoryAdapter
-import com.example.challangebinar3.HorizontalAdapter
+import com.example.challangebinar3.adapter.CategoryAdapter
+import com.example.challangebinar3.adapter.HorizontalAdapter
 import com.example.challangebinar3.R
-import com.example.challangebinar3.SharePreference
+import com.example.challangebinar3.util.SharePreference
 import com.example.challangebinar3.dataApi.Api.APIClient
 import com.example.challangebinar3.dataApi.model.CategoryMenu
 import com.example.challangebinar3.dataApi.model.DataListMenu

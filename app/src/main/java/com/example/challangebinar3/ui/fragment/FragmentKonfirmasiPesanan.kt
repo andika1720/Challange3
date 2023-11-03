@@ -1,4 +1,4 @@
-package com.example.challangebinar3.fragment
+package com.example.challangebinar3.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.challangebinar3.CartAdapter
+import com.example.challangebinar3.adapter.CartAdapter
 import com.example.challangebinar3.ViewModel.CartViewModel
 
 import com.example.challangebinar3.ViewModel.ViewModelFactory
 import com.example.challangebinar3.dataApi.model.DataOrders
 import com.example.challangebinar3.dataApi.model.ItemOrder
 import com.example.challangebinar3.databinding.FragmentKonfirmasiPesananBinding
-
 
 
 class FragmentKonfirmasiPesanan : Fragment() {
@@ -39,11 +38,6 @@ class FragmentKonfirmasiPesanan : Fragment() {
             }
         }
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     private fun getConfirm(): Int {

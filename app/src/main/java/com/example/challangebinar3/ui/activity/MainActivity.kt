@@ -1,11 +1,13 @@
-package com.example.challangebinar3
+package com.example.challangebinar3.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.challangebinar3.R
 import com.example.challangebinar3.databinding.ActivityMainBinding
+import com.example.challangebinar3.util.SharePreference
 
 
 class MainActivity : AppCompatActivity() {

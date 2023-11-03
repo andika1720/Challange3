@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.challangebinar3.fragment.HomeFragment"
+        android:name="com.example.challangebinar3.ui.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragmentMenu"
-        android:name="com.example.challangebinar3.fragment.DetailFragmentMenu"
+        android:name="com.example.challangebinar3.ui.fragment.DetailFragmentMenu"
         android:label="DetailFragmentMenu">
         <action
             android:id="@+id/action_detailFragmentMenu_to_fragmentCart"
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentProfile"
-        android:name="com.example.challangebinar3.fragment.FragmentProfile"
+        android:name="com.example.challangebinar3.ui.fragment.FragmentProfile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentCart"
-        android:name="com.example.challangebinar3.fragment.FragmentCart"
+        android:name="com.example.challangebinar3.ui.fragment.FragmentCart"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart">
         <action
@@ -54,17 +54,17 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentKonfirmasiPesanan"
-        android:name="com.example.challangebinar3.fragment.FragmentKonfirmasiPesanan"
+        android:name="com.example.challangebinar3.ui.fragment.FragmentKonfirmasiPesanan"
         android:label="fragment_konfirmasi_pesanan"
         tools:layout="@layout/fragment_konfirmasi_pesanan" />
     <activity
         android:id="@+id/userRegister"
-        android:name="com.example.challangebinar3.UserRegister"
+        android:name="com.example.challangebinar3.ui.activity.UserRegister"
         android:label="activity_user_register"
         tools:layout="@layout/activity_user_register" />
     <activity
         android:id="@+id/userLogin"
-        android:name="com.example.challangebinar3.UserLogin"
+        android:name="com.example.challangebinar3.ui.activity.UserLogin"
         android:label="activity_user_login"
         tools:layout="@layout/activity_user_login" />
 </navigation>

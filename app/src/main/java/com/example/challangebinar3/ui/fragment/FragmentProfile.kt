@@ -1,5 +1,6 @@
-package com.example.challangebinar3.fragment
+package com.example.challangebinar3.ui.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
@@ -54,30 +55,30 @@ class FragmentProfile : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val _auth = FirebaseAuth.getInstance()
-        val _userAuth = _auth.currentUser
+        val mAuth = FirebaseAuth.getInstance()
+        val mUserAuth = mAuth.currentUser
 
-        if (_userAuth != null){
-            if (_userAuth.photoUrl != null){
-                Picasso.get().load(_userAuth.photoUrl).into(binding.imgProfile)
+        if (mUserAuth != null){
+            if (mUserAuth.photoUrl != null){
+                Picasso.get().load(mUserAuth.photoUrl).into(binding.imgProfile)
             } else {
                 Picasso.get().load("https://picsum.photos/seed/picsum/200/3000").into(binding.imgProfile)
             }
 
-            binding.etUsername.setText(_userAuth.displayName)
-            binding.etEmail.setText(_userAuth.email)
-            binding.etNoTelepon.setText(_userAuth.phoneNumber)
+            binding.etUsername.setText(mUserAuth.displayName)
+            binding.etEmail.setText(mUserAuth.email)
+            binding.etNoTelepon.setText(mUserAuth.phoneNumber)
 
-            if (_userAuth.isEmailVerified){
+            if (mUserAuth.isEmailVerified){
                 binding.verified.visibility = View.VISIBLE
             } else {
                 binding.unverif.visibility = View.VISIBLE
             }
 
-            if (_userAuth.phoneNumber.isNullOrEmpty()){
+            if (mUserAuth.phoneNumber.isNullOrEmpty()){
                 binding.etNoTelepon.setText("")
             } else{
-                binding.etNoTelepon.setText(_userAuth.phoneNumber)
+                binding.etNoTelepon.setText(mUserAuth.phoneNumber)
             }
         }
 
@@ -87,8 +88,8 @@ class FragmentProfile : Fragment() {
         binding.btnSave.setOnClickListener {
             val image = when{
                 ::imgUri.isInitialized -> imgUri
-                _userAuth?.photoUrl == null -> Uri.parse("https://picsum.photos/seed/picsum/200/3000")
-                else -> _userAuth.photoUrl
+                mUserAuth?.photoUrl == null -> Uri.parse("https://picsum.photos/seed/picsum/200/3000")
+                else -> mUserAuth.photoUrl
             }
             val names = binding.etUsername.text.toString().trim()
 
@@ -102,11 +103,11 @@ class FragmentProfile : Fragment() {
                 .setDisplayName(names)
                 .setPhotoUri(image)
                 .build().also {
-                    userAuth?.updateProfile(it)?.addOnCompleteListener {
-                        if (it.isSuccessful){
+                    userAuth?.updateProfile(it)?.addOnCompleteListener { it1 ->
+                        if (it1.isSuccessful){
                             Toast.makeText(activity, "ProfileUpdated", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(activity, "${it.exception?.message}",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "${it1.exception?.message}",Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -143,6 +144,8 @@ class FragmentProfile : Fragment() {
         activity?.finish()
     }
 
+    @Suppress("DEPRECATION")
+    @SuppressLint("QueryPermissionsNeeded")
     private fun toCamera(){
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {intent ->
             activity?.packageManager?.let {
@@ -153,6 +156,8 @@ class FragmentProfile : Fragment() {
         }
     }
 
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK){
@@ -170,10 +175,10 @@ class FragmentProfile : Fragment() {
         val img = baos.toByteArray()
 
         refre.putBytes(img)
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    refre.downloadUrl.addOnCompleteListener{
-                        it.result?.let {
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    refre.downloadUrl.addOnCompleteListener{ task1 ->
+                        task1.result?.let {
                             imgUri = it
                             binding.imgProfile.setImageBitmap(imgBitmap)
                         }

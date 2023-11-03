@@ -86,6 +86,16 @@
     <string name="logout">Logout</string>
     <string name="email_login">Your email</string>
     <string name="your_email_login">Email</string>
+    <string name="harap_tunggu">Harap Tunggu.........</string>
+    <string name="input_notes">Input Notes</string>
+    <string name="catatan">Catatan</string>
+    <string name="unverifikasi">unVerifikasi</string>
+    <string name="verified">Verified</string>
+    <string name="img_food">IMG_FOOD</string>
+    <string name="note">Note</string>
+    <string name="_10000">10000</string>
+    <string name="plusiv">PlusIV</string>
+    <string name="minus_iv">Minus_IV</string>
 
 
     <string-array name="data_makananName">

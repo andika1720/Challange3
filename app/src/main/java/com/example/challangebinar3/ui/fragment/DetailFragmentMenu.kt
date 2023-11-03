@@ -1,4 +1,4 @@
-package com.example.challangebinar3.fragment
+package com.example.challangebinar3.ui.fragment
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -84,6 +84,7 @@ class DetailFragmentMenu : Fragment() {
 
 
 
+    @Suppress("DEPRECATION")
     private fun btnBack() {
         binding.buttonBack.setOnClickListener {
             requireActivity().onBackPressed()

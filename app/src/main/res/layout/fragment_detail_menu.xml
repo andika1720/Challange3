@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.DetailFragmentMenu">
+    tools:context=".ui.fragment.DetailFragmentMenu">
 
 
     <ImageView
@@ -139,7 +139,7 @@
         android:id="@+id/tv_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Catatan"
+        android:text="@string/catatan"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginStart="20dp"
@@ -154,15 +154,16 @@
         android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/tv_note"
         app:layout_constraintStart_toStartOf="parent">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:hint="Input Notes"
+            android:hint="@string/input_notes"
             android:textColorHint="@color/gray_light"
-            />
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

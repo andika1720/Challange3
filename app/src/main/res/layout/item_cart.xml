@@ -17,6 +17,7 @@
             android:layout_width="110dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
+            android:contentDescription="@string/img_food"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -77,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="10000"
+            android:text="@string/_10000"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/tv_rp"
@@ -90,10 +91,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:hint="Note"
+            android:hint="@string/note"
             app:layout_constraintStart_toEndOf="@id/iv_food"
             app:layout_constraintTop_toBottomOf="@id/tv_price"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

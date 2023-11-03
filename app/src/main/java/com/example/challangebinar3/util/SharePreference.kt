@@ -1,4 +1,4 @@
-package com.example.challangebinar3
+package com.example.challangebinar3.util
 
 import android.content.Context
 import android.content.SharedPreferences
