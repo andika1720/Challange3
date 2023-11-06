@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challangebinar3.Database.Cart
-import com.example.challangebinar3.ViewModel.CartViewModel
+import com.example.challangebinar3.ViewModel.NewViewModel
 import com.example.challangebinar3.databinding.ItemCartBinding
 
 class CartAdapter(
-    private val cartViewModel: CartViewModel
+    private val cartViewModel: NewViewModel
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
 
@@ -34,7 +34,7 @@ class CartAdapter(
     class CartViewHolder(private val binding: ItemCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(cartItem: Cart, viewModel: CartViewModel) {
+        fun bind(cartItem: Cart, viewModel: NewViewModel) {
             binding.tvDesc.text = cartItem.foodName
             binding.tvPrice.text = cartItem.priceMenu.toString()
             binding.addMin.totalHarga.text = cartItem.foodQuantity.toString()
@@ -49,12 +49,12 @@ class CartAdapter(
                 }
 
             binding.addMin.minusButtonDetail.setOnClickListener {
-                viewModel.decrement(cartItem)
+                viewModel.decrementCart(cartItem)
                 binding.addMin.totalHarga.text = cartItem.foodQuantity.toString()
             }
 
             binding.addMin.plusButtonDetail.setOnClickListener {
-                viewModel.increment(cartItem)
+                viewModel.incrementCart(cartItem)
                 binding.addMin.totalHarga.text = cartItem.foodQuantity.toString()
             }
 

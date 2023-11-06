@@ -66,7 +66,7 @@ class FragmentProfile : Fragment() {
             }
 
             binding.etUsername.setText(mUserAuth.displayName)
-            binding.etEmail.setText(mUserAuth.email)
+            binding.etEmail.text = mUserAuth.email
             binding.etNoTelepon.setText(mUserAuth.phoneNumber)
 
             if (mUserAuth.isEmailVerified){

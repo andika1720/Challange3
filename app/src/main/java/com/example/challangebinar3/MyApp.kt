@@ -1,9 +1,10 @@
 package com.example.challangebinar3
 
 import android.app.Application
-import com.example.challangebinar3.di.Module.daoModule
 import com.example.challangebinar3.di.Module.moduleData
-import com.example.challangebinar3.di.Module.moduleViewModel
+import com.example.challangebinar3.di.Module.uiModule
+
+//import com.example.challangebinar3.di.Module.uiModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -15,8 +16,8 @@ class MyApp : Application() {
             modules(
                 listOf(
                     moduleData,
-                    moduleViewModel,
-                    daoModule
+                   // uiModule
+                    uiModule
                 )
             )
         }

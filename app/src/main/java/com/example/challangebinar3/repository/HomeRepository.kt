@@ -6,11 +6,10 @@ import com.example.challangebinar3.dataApi.Api.APIService
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class Repositoryy (private val cartDao: CartDao) {
+class Repositoryy (private val apiService: APIService) {
 
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
-    private val apiService: APIService = APIClient.instance
-
+    suspend fun getList() = apiService.getListMenu()
+    suspend fun getCategory() = apiService.getCategory()
 
 
 

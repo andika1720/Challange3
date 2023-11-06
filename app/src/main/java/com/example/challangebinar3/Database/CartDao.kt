@@ -13,7 +13,7 @@ interface CartDao {
     @Insert
     fun insert(cart: Cart)
 
-    @Query("SELECT * FROM cart_menu ORDER BY id DESC ")
+    @Query("SELECT * FROM cart_menu ")
     fun getAllItem(): LiveData<List<Cart>>
 
     @Query("DELETE FROM cart_menu")

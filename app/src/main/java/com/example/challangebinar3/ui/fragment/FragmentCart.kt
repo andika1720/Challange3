@@ -5,21 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangebinar3.adapter.CartAdapter
 import com.example.challangebinar3.R
-import com.example.challangebinar3.ViewModel.CartViewModel
-import com.example.challangebinar3.ViewModel.ViewModelFactory
+import com.example.challangebinar3.ViewModel.NewViewModel
 import com.example.challangebinar3.databinding.FragmentCartBinding
+import org.koin.android.ext.android.inject
 
 
 class FragmentCart : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
 
-    private lateinit var cartViewModel: CartViewModel
+    private  val cartViewModel: NewViewModel by inject()
     private lateinit var cartAdapter: CartAdapter
 
 
@@ -29,14 +28,14 @@ class FragmentCart : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
-        setUpCartViewModel()
+//        setUpCartViewModel()
 
         cartAdapter = CartAdapter(cartViewModel)
         binding.rvCart.setHasFixedSize(true)
         binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCart.adapter = cartAdapter
 
-        cartViewModel.allCartItems.observe(viewLifecycleOwner) {
+        cartViewModel.allCartItems().observe(viewLifecycleOwner) {
             cartAdapter.setData(it)
 
             var totalPrice = 0
@@ -50,10 +49,10 @@ class FragmentCart : Fragment() {
         return binding.root
     }
 
-    private fun setUpCartViewModel() {
-        val viewModelFactory = ViewModelFactory(requireActivity().application)
-        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
-    }
+//    private fun setUpCartViewModel() {
+//        val viewModelFactory = ViewModelFactory(requireActivity().application)
+//        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
+//    }
 
     private fun addToConfirm() {
         binding.btPesan.setOnClickListener {

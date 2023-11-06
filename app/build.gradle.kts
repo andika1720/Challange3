@@ -79,8 +79,10 @@ dependencies {
 
     //View model
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
     //LiveData
     implementation ("androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     //Room
     implementation ("androidx.room:room-runtime:2.5.2")
     kapt ("androidx.room:room-compiler:2.5.2")

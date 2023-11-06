@@ -12,14 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.challangebinar3.R
-import com.example.challangebinar3.ViewModel.DetailFragmentMenuViewModel
-import com.example.challangebinar3.ViewModel.ViewModelFactory
+import com.example.challangebinar3.ViewModel.NewViewModel
 import com.example.challangebinar3.dataApi.model.DataListMenu
 import com.example.challangebinar3.databinding.FragmentDetailMenuBinding
+import org.koin.android.ext.android.inject
 
 
 class DetailFragmentMenu : Fragment() {
@@ -30,7 +29,7 @@ class DetailFragmentMenu : Fragment() {
 
     private val url: String = "https://maps.app.goo.gl/CAN7FLsRkUeRZ2dTA"
 
-    private lateinit var  viewModel: DetailFragmentMenuViewModel
+    private val  viewModel: NewViewModel by inject()
 
 
     @SuppressLint("SetTextI18n")
@@ -40,9 +39,9 @@ class DetailFragmentMenu : Fragment() {
     ): View {
 
         _binding = FragmentDetailMenuBinding.inflate(inflater, container, false)
-        setUpCartViewModel()
+//        setUpCartViewModel()
 
-        viewModel.totalPrice.observe(viewLifecycleOwner){
+        viewModel.totalPricee.observe(viewLifecycleOwner){
             binding.buttonDetail.text = "Tambah Ke Keranjang -Rp.$it "
 
         }
@@ -95,15 +94,15 @@ class DetailFragmentMenu : Fragment() {
     private fun addToCart() {
         binding.buttonDetail.setOnClickListener {
             val inputNote = binding.inputNote.text.toString()
-            viewModel.addToCart(inputNote)
+            viewModel.addToCartt(inputNote)
             findNavController().navigate(R.id.action_detailFragmentMenu_to_fragmentCart)
         }
     }
 
-    private fun setUpCartViewModel() {
-        val viewModelFactory = ViewModelFactory(requireActivity().application)
-        viewModel = ViewModelProvider(this, viewModelFactory)[DetailFragmentMenuViewModel::class.java]
-    }
+//    private fun setUpCartViewModel() {
+//        val viewModelFactory = ViewModelFactory(requireActivity().application)
+//        viewModel = ViewModelProvider(this, viewModelFactory)[DetailFragmentMenuViewModel::class.java]
+//    }
 
     //menerima data dari homefragment
     private fun setData() {
@@ -120,7 +119,7 @@ class DetailFragmentMenu : Fragment() {
             binding.priceMenu.text = item.hargaFormat
             binding.descDetailMenu.text = item.detail
 
-            viewModel.initSelectedItem(item!!)
+            viewModel.initSelectedItem(item)
         }
     }
 

@@ -6,21 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangebinar3.adapter.CartAdapter
-import com.example.challangebinar3.ViewModel.CartViewModel
-
-import com.example.challangebinar3.ViewModel.ViewModelFactory
+import com.example.challangebinar3.ViewModel.NewViewModel
 import com.example.challangebinar3.dataApi.model.DataOrders
 import com.example.challangebinar3.dataApi.model.ItemOrder
 import com.example.challangebinar3.databinding.FragmentKonfirmasiPesananBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import org.koin.android.ext.android.inject
 
 
 class FragmentKonfirmasiPesanan : Fragment() {
     private lateinit var binding: FragmentKonfirmasiPesananBinding
 
-    private lateinit var cartViewModel: CartViewModel
+    private lateinit var auth : FirebaseAuth
+    private val cartViewModel: NewViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,11 +30,11 @@ class FragmentKonfirmasiPesanan : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentKonfirmasiPesananBinding.inflate(inflater, container, false)
-        setCartVm()
+//        setCartVm()
         getConfirm()
         showRv()
         payment()
-        cartViewModel.orderSucces.observe(viewLifecycleOwner) {
+        cartViewModel.success.observe(viewLifecycleOwner) {
             if (it) {
                 Toast.makeText(requireContext(), "OrderSuccses", Toast.LENGTH_SHORT).show()
             }
@@ -66,18 +68,19 @@ class FragmentKonfirmasiPesanan : Fragment() {
 
 
 
-    private fun setCartVm() {
-        val viewModelFactory = ViewModelFactory(requireActivity().application)
-        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
-    }
+//    private fun setCartVm() {
+//        val viewModelFactory = ViewModelFactory(requireActivity().application)
+//        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
+//    }
 
     private fun payment(){
         binding.btPayment.setOnClickListener {
-            val username = "Andika"
+            auth = Firebase.auth
+            val currentAuth = auth.currentUser
             val orderItems = cartViewModel.allCartItems.value ?: emptyList()
 
             if (orderItems.isNotEmpty()){
-                val orderReq = DataOrders(username, getConfirm(), orderItems.map {
+                val orderReq = DataOrders(currentAuth?.email.toString(), getConfirm(), orderItems.map {
                     ItemOrder(it.foodName,it.foodQuantity,it.foodNote, it.totalPrice!!)
                 })
 
