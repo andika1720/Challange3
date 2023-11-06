@@ -15,7 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.challangebinar3.R
-import com.example.challangebinar3.ViewModel.NewViewModel
+import com.example.challangebinar3.viewModel.NewViewModel
 import com.example.challangebinar3.dataApi.model.DataListMenu
 import com.example.challangebinar3.databinding.FragmentDetailMenuBinding
 import org.koin.android.ext.android.inject
@@ -39,7 +39,7 @@ class DetailFragmentMenu : Fragment() {
     ): View {
 
         _binding = FragmentDetailMenuBinding.inflate(inflater, container, false)
-//        setUpCartViewModel()
+
 
         viewModel.totalPricee.observe(viewLifecycleOwner){
             binding.buttonDetail.text = "Tambah Ke Keranjang -Rp.$it "
@@ -94,7 +94,7 @@ class DetailFragmentMenu : Fragment() {
     private fun addToCart() {
         binding.buttonDetail.setOnClickListener {
             val inputNote = binding.inputNote.text.toString()
-            viewModel.addToCartt(inputNote)
+            viewModel.addToCart(inputNote)
             findNavController().navigate(R.id.action_detailFragmentMenu_to_fragmentCart)
         }
     }
@@ -131,9 +131,6 @@ class DetailFragmentMenu : Fragment() {
         }
 
         viewModel.counter.observe(viewLifecycleOwner, observer)
-
-
-
         binding.buttonAdd.plusButtonDetail.setOnClickListener {
             viewModel.increment()
         }

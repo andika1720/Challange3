@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangebinar3.adapter.CartAdapter
-import com.example.challangebinar3.ViewModel.NewViewModel
+import com.example.challangebinar3.viewModel.NewViewModel
 import com.example.challangebinar3.dataApi.model.DataOrders
 import com.example.challangebinar3.dataApi.model.ItemOrder
 import com.example.challangebinar3.databinding.FragmentKonfirmasiPesananBinding

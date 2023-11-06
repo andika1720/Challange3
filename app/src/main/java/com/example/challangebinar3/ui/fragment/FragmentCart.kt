@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangebinar3.adapter.CartAdapter
 import com.example.challangebinar3.R
-import com.example.challangebinar3.ViewModel.NewViewModel
+import com.example.challangebinar3.viewModel.NewViewModel
 import com.example.challangebinar3.databinding.FragmentCartBinding
 import org.koin.android.ext.android.inject
 
@@ -28,7 +28,6 @@ class FragmentCart : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
-//        setUpCartViewModel()
 
         cartAdapter = CartAdapter(cartViewModel)
         binding.rvCart.setHasFixedSize(true)
@@ -48,11 +47,6 @@ class FragmentCart : Fragment() {
         addToConfirm()
         return binding.root
     }
-
-//    private fun setUpCartViewModel() {
-//        val viewModelFactory = ViewModelFactory(requireActivity().application)
-//        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
-//    }
 
     private fun addToConfirm() {
         binding.btPesan.setOnClickListener {

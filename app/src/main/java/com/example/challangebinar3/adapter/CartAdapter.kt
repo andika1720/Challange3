@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challangebinar3.Database.Cart
-import com.example.challangebinar3.ViewModel.NewViewModel
+import com.example.challangebinar3.viewModel.NewViewModel
 import com.example.challangebinar3.databinding.ItemCartBinding
 
 class CartAdapter(

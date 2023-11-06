@@ -30,17 +30,4 @@ interface CartDao {
     @Query("SELECT * FROM cart_menu WHERE food_name = :foodName")
         fun getItem(foodName: String): Cart?
 
-
-        fun updateCartMenu(cartt: Cart){
-            val existingItem = getItem(cartt.foodName)
-            if (existingItem != null) {
-                val newQuantity = existingItem.foodQuantity + cartt.foodQuantity
-                val TotalPrice = newQuantity * existingItem.priceMenu
-                existingItem.foodQuantity = newQuantity
-                existingItem.totalPrice = TotalPrice
-                update(existingItem)
-            } else {
-                insert(cartt)
-            }
-        }
 }

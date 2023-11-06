@@ -14,8 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challangebinar3.adapter.CategoryAdapter
 import com.example.challangebinar3.adapter.HorizontalAdapter
 import com.example.challangebinar3.R
-import com.example.challangebinar3.ViewModel.HomeViewModel
-import com.example.challangebinar3.ViewModel.NewViewModel
+import com.example.challangebinar3.viewModel.HomeViewModel
 import com.example.challangebinar3.util.SharePreference
 import com.example.challangebinar3.dataApi.model.CategoryMenu
 import com.example.challangebinar3.dataApi.model.DataListMenu

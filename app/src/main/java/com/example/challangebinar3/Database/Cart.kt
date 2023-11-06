@@ -25,9 +25,3 @@ data class Cart (
     var foodNote: String?
 
 ):Parcelable
-{
-
-    companion object {
-        const val TABLE_NAME = "cart_menu"
-    }
-}

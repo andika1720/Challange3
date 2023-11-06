@@ -16,7 +16,6 @@ class MyApp : Application() {
             modules(
                 listOf(
                     moduleData,
-                   // uiModule
                     uiModule
                 )
             )

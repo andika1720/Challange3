@@ -1,4 +1,4 @@
-package com.example.challangebinar3.Repository
+package com.example.challangebinar3.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,11 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.challangebinar3.Database.Cart
 import com.example.challangebinar3.Database.CartDao
 import com.example.challangebinar3.dataApi.Api.APIClient
-import com.example.challangebinar3.dataApi.Api.APIService
 import com.example.challangebinar3.dataApi.model.DataListMenu
 import com.example.challangebinar3.dataApi.model.DataOrders
 import com.example.challangebinar3.dataApi.model.OrderMenu
-import com.example.challangebinar3.util.Callback
 import retrofit2.Call
 import retrofit2.Response
 import java.util.concurrent.ExecutorService
@@ -19,7 +17,6 @@ import java.util.concurrent.Executors
 class NewRepo (private val cartDao: CartDao )  {
 
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
-    private val apiService: APIService = APIClient.instance
 
 
     private val _counter = MutableLiveData(1)
@@ -54,6 +51,7 @@ class NewRepo (private val cartDao: CartDao )  {
         }
         total()
     }
+
 
     private fun total() {
         val currentAmount = _counter.value ?: 1
@@ -90,12 +88,6 @@ class NewRepo (private val cartDao: CartDao )  {
     }
     fun getAllCartItems(): LiveData<List<Cart>> = cartDao.getAllItem()
 
-    fun getItems(foodname: String, callback: Callback){
-        executorService.execute{
-            val cart = cartDao.getItem(foodname)
-            callback.cartLoad(cart)
-        }
-    }
     private fun update(cart: Cart) {
         cartDao.update(cart)
     }
@@ -104,10 +96,25 @@ class NewRepo (private val cartDao: CartDao )  {
         executorService.execute {cartDao.deleteItemById(cartId) }
     }
 
-    private fun insertCartData(cart: Cart) {
-        executorService.execute { cartDao.insert(cart) }
+
+    private fun addCartToUpdate(cart: Cart) {
+        executorService.execute {
+            updateCartMenu1(cart)
+        }
     }
 
+    private fun updateCartMenu1(cartt: Cart){
+        val existingItem = cartDao.getItem(cartt.foodName)
+        if (existingItem != null) {
+            val newQuantity = existingItem.foodQuantity + cartt.foodQuantity
+            val totalPrice = newQuantity * existingItem.priceMenu
+            existingItem.foodQuantity = newQuantity
+            existingItem.totalPrice = totalPrice
+            update(existingItem)
+        } else {
+            cartDao.insert(cartt)
+        }
+    }
     fun addToCart(notes: String) {
         val selectedItem = _selectedItem.value
 
@@ -123,25 +130,10 @@ class NewRepo (private val cartDao: CartDao )  {
                             totalPrice = it1,
                             foodNote = notes
                         )
-
-
                     }
-                }
-            getItems(cartItem!!.foodName, object: Callback {
-                override fun cartLoad(cart: Cart?): Cart? {
-                    if (cart != null) {
-                        val total = counter.value!!.toInt() + cart.foodQuantity
-                        cart.foodQuantity =total
-                        cart.totalPrice = cart.priceMenu.times(total)
-                        update(cart)
-                    } else {
-                        insertCartData(cartItem)
-                    }
-                    return cart
-                }
 
-            })
-            //cartItem?.let { it1 -> insert(it1) }
+                }
+                addCartToUpdate(cartItem!!)
         }
 
     }
@@ -169,6 +161,4 @@ class NewRepo (private val cartDao: CartDao )  {
             })
     }
 
-    suspend fun getList() = apiService.getListMenu()
-    suspend fun getCategory() = apiService.getCategory()
 }
