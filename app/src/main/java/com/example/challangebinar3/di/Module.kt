@@ -26,17 +26,9 @@ object Module {
 
         }
 
-
     val uiModule
         get() = module {
             viewModel { HomeViewModel(get())}
             viewModel { NewViewModel(get())}
         }
-
-//    val daoModule
-//        get() = module {
-//            single { CartDatabase.getInstance(get()) }
-//            factory { CartRepo(get()) }
-//            factory { get<CartDatabase>().cartDao }
-//        }
 }
