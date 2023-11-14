@@ -1,6 +1,5 @@
 package com.example.challangebinar3.dataApi.model
 
-import org.w3c.dom.Text
 
 data class User(
     var email: String? = null,

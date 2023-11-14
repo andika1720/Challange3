@@ -1,4 +1,4 @@
-package com.example.challangebinar3.dataApi.Api
+package com.example.challangebinar3.dataApi.api
 
 import com.example.challangebinar3.dataApi.model.CategoryMenu
 import com.example.challangebinar3.dataApi.model.ListMenu

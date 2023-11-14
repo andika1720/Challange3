@@ -1,14 +1,13 @@
-package com.example.challangebinar3.dataApi.Api
+package com.example.challangebinar3.dataApi.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 object APIClient {
 
-    const val BASE_URL = "https://testing.jasa-nikah-siri-amanah-profesional.com/"
+    private const val BASE_URL = "https://testing.jasa-nikah-siri-amanah-profesional.com/"
 
     private val logging: HttpLoggingInterceptor
         get() {

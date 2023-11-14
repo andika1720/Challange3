@@ -66,13 +66,6 @@ class FragmentKonfirmasiPesanan : Fragment() {
         return finaltotal
     }
 
-
-
-//    private fun setCartVm() {
-//        val viewModelFactory = ViewModelFactory(requireActivity().application)
-//        cartViewModel = ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
-//    }
-
     private fun payment(){
         binding.btPayment.setOnClickListener {
             auth = Firebase.auth
