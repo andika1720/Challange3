@@ -1,20 +1,20 @@
 package com.example.challangebinar3
 
 
-import android.provider.ContactsContract.CommonDataKinds.Im
+
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 
 
 class HorizontalAdapter(
-    val listFood : ArrayList<ParcelMakanan>,
-    private val gridMode : Boolean = true,
+    private val listFood : ArrayList<ParcelMakanan>,
+    //awalnyaprivate val
+    var gridMode : Boolean = true,
     var onItemClick: ((ParcelMakanan)-> Unit) ? = null) :
     RecyclerView.Adapter<HorizontalAdapter.ViewHolder>() {
 
@@ -31,10 +31,10 @@ class HorizontalAdapter(
     }
 
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-        val ( image, name, price, desc ) = listFood[position]
+        val ( image, name, price, _ ) = listFood[position]
         holder.image.setImageResource(image)
         holder.name.text = name
-        holder.price.text = price
+        holder.price.text = price.toString()
 
         val currentItem = listFood[position]
         holder.itemView.setOnClickListener {
@@ -46,4 +46,10 @@ class HorizontalAdapter(
         return listFood.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun reloadData(newData: ArrayList<ParcelMakanan>) {
+        listFood.clear()
+        listFood.addAll(newData)
+        notifyDataSetChanged()
+    }
 }

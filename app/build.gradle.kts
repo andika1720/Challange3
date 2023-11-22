@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs")
+    id ("kotlin-kapt")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -53,4 +55,13 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.2")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.2")
 
+    //View model
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    //LiveData
+    implementation ("androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2")
+    //Room
+    implementation ("androidx.room:room-runtime:2.5.2")
+    kapt ("androidx.room:room-compiler:2.5.2")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

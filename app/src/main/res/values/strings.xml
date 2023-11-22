@@ -43,6 +43,30 @@
     <string name="image_location">image location</string>
     <string name="_20_000">20.000</string>
     <string name="imgdetail">imgdetail</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="invispass">************</string>
+    <string name="username_frgm_profile">Username</string>
+    <string name="password">Password</string>
+    <string name="et_username_profile">Your Username</string>
+    <string name="total_pesanan">Total Pesanan:</string>
+    <string name="pesan">Pesan</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="ringkasan_pembayaran">Ringkasan Pembayaran</string>
+    <string name="metode_pengiriman">Metode Pengiriman</string>
+    <string name="tittle">Tittle</string>
+    <string name="price">Price</string>
+    <string name="quantity">quantity</string>
+    <string name="ambil_sendiri">Ambil Sendiri</string>
+    <string name="dikirim">Dikirim</string>
+    <string name="tunai">Tunai</string>
+    <string name="dompet_digital">Dompet Digital</string>
+    <string name="youremail_gmail_com">youremail@gmail.com</string>
+    <string name="_62_8">+62: 8</string>
+    <string name="iv_profile">IV_Profile</string>
+    <string name="email">Email</string>
+    <string name="no_telepon">No. Telepon</string>
+    <string name="total">Total =</string>
 
 
     <string-array name="data_makananName">
@@ -56,7 +80,7 @@
         <item>Salmon</item>
     </string-array>
 
-    <string-array name="data_harga">
+    <integer-array name="data_harga">
         <item>55000</item>
         <item>35000</item>
         <item>22000</item>
@@ -65,7 +89,7 @@
         <item>17000</item>
         <item>21000</item>
         <item>45000</item>
-    </string-array>
+    </integer-array>
 
     <integer-array name="data_drawableImg">
         <item>@drawable/pizzabck</item>

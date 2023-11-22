@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
     android:layout_marginStart="10dp"
@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/imagev_menu"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="80dp"
             android:scaleType="fitXY"
             tools:src="@drawable/pizzabck"
@@ -27,12 +27,13 @@
             android:id="@+id/text_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Pizza"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/imagev_menu"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/imagev_menu"
+            tools:ignore="TextContrastCheck"
+            tools:text="Pizza" />
 
         <TextView
             android:id="@+id/tv_price"

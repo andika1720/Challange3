@@ -7,35 +7,47 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.challangebinar3.HomeFragment"
+        android:name="com.example.challangebinar3.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailFragmentMenu"
             app:destination="@id/detailFragmentMenu" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentCart"
+            app:destination="@id/fragmentCart" />
     </fragment>
     <fragment
         android:id="@+id/detailFragmentMenu"
-        android:name="com.example.challangebinar3.DetailFragmentMenu"
-        android:label="DetailFragmentMenu" >
-        <argument
-            android:name="iv_detail"
-            app:argType="integer"
-            android:defaultValue="-1" />
-        <argument
-            android:name="priceMenu"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Data Tidak Ditemukan" />
-        <argument
-            android:name="nameMenu"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Data Tidak Ditemukan" />
-        <argument
-            android:name="descDetailMenu"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="Data Tidak Ditemukan" />
+        android:name="com.example.challangebinar3.fragment.DetailFragmentMenu"
+        android:label="DetailFragmentMenu">
+        <action
+            android:id="@+id/action_detailFragmentMenu_to_fragmentCart"
+            app:destination="@id/fragmentCart" />
+        <action
+            android:id="@+id/action_detailFragmentMenu_to_fragmentCart2"
+            app:destination="@id/fragmentCart" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.example.challangebinar3.fragment.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/fragmentCart"
+        android:name="com.example.challangebinar3.fragment.FragmentCart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_fragmentCart_to_fragmentKonfirmasiPesanan"
+            app:destination="@id/fragmentKonfirmasiPesanan" />
+        <action
+            android:id="@+id/action_fragmentCart_to_fragmentKonfirmasiPesanan2"
+            app:destination="@id/fragmentKonfirmasiPesanan" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentKonfirmasiPesanan"
+        android:name="com.example.challangebinar3.fragment.FragmentKonfirmasiPesanan"
+        android:label="fragment_konfirmasi_pesanan"
+        tools:layout="@layout/fragment_konfirmasi_pesanan" />
 </navigation>
