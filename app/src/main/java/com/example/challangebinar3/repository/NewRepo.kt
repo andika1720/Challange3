@@ -32,13 +32,11 @@ class NewRepo (private val cartDao: CartDao )  {
     fun initSelectedItem(item: DataListMenu) {
         _selectedItem.value = item
         _totalPrice.value = item.harga
-
     }
 
     fun increment() {
         _counter.value = (_counter.value ?: 1) + 1
         total()
-
     }
 
     fun deleteItems(){
@@ -51,8 +49,6 @@ class NewRepo (private val cartDao: CartDao )  {
         }
         total()
     }
-
-
     private fun total() {
         val currentAmount = _counter.value ?: 1
         val selectedItem = _selectedItem.value
@@ -60,7 +56,6 @@ class NewRepo (private val cartDao: CartDao )  {
             val totalPrice = selectedItem.harga.times(currentAmount)
             _totalPrice.value = totalPrice
         }
-
     }
 
     fun incrementCart(cart: Cart) {
@@ -81,7 +76,6 @@ class NewRepo (private val cartDao: CartDao )  {
             updateQuantityItem(cart)
         }
     }
-
 
     private fun updateQuantityItem(cart: Cart) {
         executorService.execute {cartDao.update(cart)}

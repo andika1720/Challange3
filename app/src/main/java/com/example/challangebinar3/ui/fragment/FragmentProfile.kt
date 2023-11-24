@@ -13,13 +13,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.challangebinar3.R
 import com.example.challangebinar3.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
+//import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 
 
@@ -52,24 +53,32 @@ class FragmentProfile : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val mAuth = FirebaseAuth.getInstance()
         val mUserAuth = mAuth.currentUser
 
-        if (mUserAuth != null){
-            if (mUserAuth.photoUrl != null){
-                Picasso.get().load(mUserAuth.photoUrl).into(binding.imgProfile)
-            } else {
-                Picasso.get().load("https://picsum.photos/seed/picsum/200/3000").into(binding.imgProfile)
+
+            if (mUserAuth != null) {
+                if (mUserAuth.photoUrl != null) {
+                    Glide.with(this)
+                        .load(mUserAuth.photoUrl)
+                        .into(binding.imgProfile)
+                } else {
+                    Glide.with(this)
+                        .load("https://picsum.photos/seed/picsum/200/3000")
+                        .into(binding.imgProfile)
+                }
             }
 
-            binding.etUsername.setText(mUserAuth.displayName)
-            binding.etEmail.text = mUserAuth.email
-            binding.etNoTelepon.setText(mUserAuth.phoneNumber)
 
-            if (mUserAuth.isEmailVerified){
+            binding.etUsername.setText(mUserAuth?.displayName)
+            binding.etEmail.text = mUserAuth?.email
+            binding.etNoTelepon.setText(mUserAuth?.phoneNumber)
+
+            if (mUserAuth!!.isEmailVerified){
                 binding.verified.visibility = View.VISIBLE
             } else {
                 binding.unverif.visibility = View.VISIBLE
@@ -80,15 +89,13 @@ class FragmentProfile : Fragment() {
             } else{
                 binding.etNoTelepon.setText(mUserAuth.phoneNumber)
             }
-        }
-
         binding.imgProfile.setOnClickListener {
             toCamera()
         }
         binding.btnSave.setOnClickListener {
             val image = when{
                 ::imgUri.isInitialized -> imgUri
-                mUserAuth?.photoUrl == null -> Uri.parse("https://picsum.photos/seed/picsum/200/3000")
+                mUserAuth.photoUrl == null -> Uri.parse("https://picsum.photos/seed/picsum/200/3000")
                 else -> mUserAuth.photoUrl
             }
             val names = binding.etUsername.text.toString().trim()
@@ -113,6 +120,11 @@ class FragmentProfile : Fragment() {
                 }
 
         }
+
+
+
+
+
 //        if (userAuth != null){
 //           val email = userAuth!!.email
 //           val username = userAuth!!.displayName
